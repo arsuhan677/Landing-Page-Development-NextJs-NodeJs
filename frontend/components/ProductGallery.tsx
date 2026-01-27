@@ -8,6 +8,7 @@ import { ChevronLeft, ChevronRight, ShoppingCart } from 'lucide-react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import OrderButton from './OrderButton';
 
 const ProductGallery = () => {
   const products = [
@@ -18,12 +19,12 @@ const ProductGallery = () => {
   ];
 
   return (
-    <section className="bg-[#FFF5ED] py-16">
+    <section className=" py-16">
       <div className="container mx-auto px-6 text-center relative">
         
         {/* Header */}
         <div className="mb-10">
-          <h2 className="text-3xl font-bold text-[#333] mb-2">প্রোডাক্ট গ্যালারি</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#333] mb-2">প্রোডাক্ট গ্যালারি</h2>
           <p className="text-gray-500">আমাদের প্রিমিয়াম স্কিনকেয়ার প্রোডাক্ট কালেকশন দেখুন</p>
         </div>
 
@@ -75,12 +76,7 @@ const ProductGallery = () => {
         </div>
 
         {/* CTA Button */}
-        <div className="flex justify-center mt-8">
-          <button className="bg-[#F37021] hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-2xl flex items-center gap-3 shadow-lg shadow-orange-200 transition-all active:scale-95">
-            <ShoppingCart size={22} />
-            এখনই অর্ডার করুন
-          </button>
-        </div>
+        <OrderButton className='mt-8' />
       </div>
 
       {/* Custom Styles for Pagination Dots */}

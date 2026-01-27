@@ -1,6 +1,8 @@
 import React from "react";
 import { Truck, ShieldCheck, Box, Headset, ShoppingCart } from "lucide-react";
-import CTAButton from "@/components/CTAButton";
+import CTAButton from "./OrderButton";
+import OrderButton from "./OrderButton";
+// import CTAButton from "./CTAbutton";
 
 const FeaturesSection = () => {
   const features = [
@@ -27,7 +29,7 @@ const FeaturesSection = () => {
   ];
 
   return (
-    <section className="bg-[#FFF5ED] py-16">
+    <section className="py-16">
       <div className="container mx-auto px-4 md:px-8 text-center">
         {/* Section Heading */}
         <h2 className="text-2xl md:text-3xl font-bold text-[#333] mb-12">
@@ -56,17 +58,7 @@ const FeaturesSection = () => {
         </div>
 
         {/* CTA Button */}
-        <div className="flex justify-center">
-  <CTAButton>
-    এখনই অর্ডার করুন
-  </CTAButton>
-</div>
-        {/* <div className="flex justify-center">
-          <button className="bg-[#F37021] hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-2xl flex items-center gap-3 shadow-lg shadow-orange-200 transition-all active:scale-95 w-full md:w-auto">
-            <ShoppingCart size={22} />
-            এখনই অর্ডার করুন
-          </button>
-        </div> */}
+        <OrderButton />
       </div>
     </section>
   );

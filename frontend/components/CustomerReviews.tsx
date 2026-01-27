@@ -1,5 +1,6 @@
 import React from 'react';
 import { Star, Quote, CheckCircle, ShoppingCart } from 'lucide-react';
+import OrderButton from './OrderButton';
 
 const CustomerReviews = () => {
   const reviews = [
@@ -27,13 +28,13 @@ const CustomerReviews = () => {
   ];
 
   return (
-    <section className="bg-[#FFF5ED] py-16">
+    <section className="py-16">
       <div className="container mx-auto px-4 lg:px-8">
         
         {/* Header with Stats */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
           <div>
-            <h2 className="text-2xl lg:text-3xl font-bold text-[#333] mb-2">কাস্টমার রিভিউ</h2>
+            <h2 className="text-2xl md:text-3xl lg:text-3xl font-bold text-[#333] mb-2">কাস্টমার রিভিউ</h2>
             <div className="flex items-center gap-2">
               <div className="flex text-orange-500">
                 {[...Array(5)].map((_, i) => <Star key={i} size={18} fill="currentColor" />)}
@@ -89,12 +90,7 @@ const CustomerReviews = () => {
         </div>
 
         {/* Global CTA */}
-        <div className="flex justify-center">
-          <button className="bg-[#F37021] hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-2xl flex items-center gap-3 shadow-lg shadow-orange-200 transition-all active:scale-95">
-            <ShoppingCart size={22} />
-            এখনই অর্ডার করুন
-          </button>
-        </div>
+        <OrderButton />
       </div>
     </section>
   );

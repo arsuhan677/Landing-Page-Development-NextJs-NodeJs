@@ -1,5 +1,6 @@
 import React from 'react';
 import { Droplets, Clock, Sparkles, Moon, ShoppingCart } from 'lucide-react';
+import OrderButton from './OrderButton';
 
 const UsageSteps = () => {
   const steps = [
@@ -14,7 +15,7 @@ const UsageSteps = () => {
       <div className="container mx-auto px-4 lg:px-8 text-center">
         {/* Header */}
         <div className="mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#333] mb-2">ব্যবহার বিধি</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#333] mb-2">ব্যবহার বিধি</h2>
           <p className="text-gray-500 text-base">সঠিক ফলাফলের জন্য নিচের ধাপগুলো অনুসরণ করুন</p>
         </div>
 
@@ -42,12 +43,7 @@ const UsageSteps = () => {
         </div>
 
         {/* CTA Button */}
-        <div className="flex justify-center">
-          <button className="bg-[#F37021] hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-2xl flex items-center gap-3 shadow-lg shadow-orange-200 transition-all active:scale-95 w-full md:w-auto">
-            <ShoppingCart size={22} />
-            এখনই অর্ডার করুন
-          </button>
-        </div>
+        <OrderButton />
       </div>
     </section>
   );

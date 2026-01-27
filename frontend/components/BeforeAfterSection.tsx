@@ -1,13 +1,14 @@
 import React from 'react';
 import { ShoppingCart } from 'lucide-react';
+import OrderButton from './OrderButton';
 
 const BeforeAfterSection = () => {
   return (
-    <section className="bg-[#FFF5ED] py-2 lg:py-10 px-4">
+    <section className="py-2 lg:py-10 px-4">
       <div className="max-w-4xl mx-auto text-center">
         {/* Heading */}
         <div className="mb-8">
-          <h2 className="text-3xl font-bold text-[#333] mb-2">Before/After</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#333] mb-2">Before/After</h2>
           <p className="text-gray-600 text-base">আমাদের সন্তুষ্ট গ্রাহকদের ফলাফল দেখুন</p>
         </div>
 
@@ -46,12 +47,7 @@ const BeforeAfterSection = () => {
         </p>
 
         {/* CTA Button */}
-        <div className="flex justify-center">
-          <button className="bg-[#F37021] hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-2xl flex items-center gap-3 shadow-lg shadow-orange-200 transition-transform active:scale-95">
-            <ShoppingCart size={22} />
-            এখনই অর্ডার করুন
-          </button>
-        </div>
+        <OrderButton />
       </div>
     </section>
   );

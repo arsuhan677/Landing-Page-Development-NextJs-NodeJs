@@ -1,10 +1,13 @@
+// components/ProductHero.
+"use client"
 import React from "react";
 import { Check, Star, MessageCircle, Truck } from "lucide-react";
+import OrderButton from "./OrderButton";
 
 const ProductHero = () => {
   return (
-    <section className="bg-[#FFF5ED] min-h-[500px] flex items-center justify-center p-4 md:p-12 font-sans">
-      <div className="container mx-auto md:px-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+    <section className="min-h-[500px] flex items-center justify-center p-4 md:p-12 font-sans">
+      <div className="container mx-auto px-0 lg:px-5 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         {/* Left Content */}
         <div className="space-y-6">
           <header className="space-y-2">
@@ -57,8 +60,8 @@ const ProductHero = () => {
 
           {/* Action Buttons */}
           <div className="flex flex-wrap gap-4 pt-2">
-            <button className="bg-[#F37021] hover:bg-orange-600 text-white font-bold w-full md:w-auto py-4 px-8 rounded-xl flex items-center gap-2 transition-all">
-              এখনই অর্ডার করুন
+            <button className="">
+              <OrderButton />
             </button>
             <button className="bg-[#25D366] hover:bg-green-600 text-white font-bold w-full md:w-auto py-4 px-8 rounded-xl flex items-center gap-2 transition-all">
               <MessageCircle size={20} />
@@ -75,7 +78,7 @@ const ProductHero = () => {
 
         {/* Right Product Image */}
         <div className="relative flex justify-center items-center">
-          <div className="bg-white p-8 rounded-sm shadow-xl w-full max-w-md aspect-square flex items-center justify-center">
+          <div className="bg-white p-8 rounded-sm shadow-xl w-full max-w-lg aspect-square flex items-center justify-center animate-float">
             <img
               src="/images/single.jpeg"
               alt="Vitamin C Serum"
@@ -84,6 +87,21 @@ const ProductHero = () => {
           </div>
         </div>
       </div>
+
+      {/* Tailwind Custom Animation */}
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-15px);
+          }
+        }
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+      `}</style>
     </section>
   );
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Sun, Droplets, Leaf, FlaskConical, Sparkles, ShoppingCart, ShieldCheck, Beaker } from 'lucide-react';
+import OrderButton from './OrderButton';
 
 const IngredientsSection = () => {
   const ingredients = [
@@ -11,11 +12,11 @@ const IngredientsSection = () => {
   ];
 
   return (
-    <section className="bg-[#FFF5ED] py-4 lg:py-10">
+    <section id='উপাদান' className="py-4 lg:py-10">
       <div className="container mx-auto px-4 lg:px-8 text-center">
         {/* Header */}
         <div className="mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#333] mb-4">উপাদান</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#333] mb-4">উপাদান</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             প্রিমিয়াম মানের উপাদান দিয়ে তৈরি, যা আপনার ত্বকের জন্য সম্পূর্ণ নিরাপদ
           </p>
@@ -50,12 +51,7 @@ const IngredientsSection = () => {
         </div>
 
         {/* CTA Button */}
-        <div className="flex justify-center">
-          <button className="bg-[#F37021] hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-2xl flex items-center gap-3 shadow-lg shadow-orange-200 transition-transform active:scale-95 w-full md:w-auto">
-            <ShoppingCart size={20} />
-            এখনই অর্ডার করুন
-          </button>
-        </div>
+        <OrderButton />
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { ChevronDown, ShoppingCart } from 'lucide-react';
+import OrderButton from './OrderButton';
 
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -79,12 +80,7 @@ const FAQSection = () => {
         </div>
 
         {/* CTA Button */}
-        <div className="flex justify-center mt-12">
-          <button className="bg-[#F37021] hover:bg-orange-600 text-white font-bold py-4 px-12 rounded-2xl flex items-center gap-3 shadow-lg shadow-orange-200 transition-all active:scale-95">
-            <ShoppingCart size={22} />
-            এখনই অর্ডার করুন
-          </button>
-        </div>
+        <OrderButton className='mt-8' />
       </div>
     </section>
   );

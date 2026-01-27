@@ -1,5 +1,6 @@
 import React from "react";
 import { Award, FileCheck, QrCode, ShoppingCart } from "lucide-react";
+import OrderButton from "./OrderButton";
 
 const CertificationSection = () => {
   const certifications = [
@@ -21,11 +22,11 @@ const CertificationSection = () => {
   ];
 
   return (
-    <section className="bg-[#FFF5ED] py-4 lg:py-16">
+    <section className="py-4 lg:py-16">
       <div className="container mx-auto px-4 lg:px-8 text-center">
         {/* Section Heading */}
         <div className="mb-12">
-          <h2 className="text-2xl md:text-4xl font-bold text-[#333] mb-3">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#333] mb-3">
             সার্টিফিকেট ও অনুমোদন
           </h2>
           <p className="text-gray-500">
@@ -55,12 +56,7 @@ const CertificationSection = () => {
         </div>
 
         {/* CTA Button */}
-        <div className="flex justify-center mt-8">
-          <button className="bg-[#F37021] hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-2xl flex items-center gap-3 shadow-lg shadow-orange-200 transition-all active:scale-95">
-            <ShoppingCart size={22} />
-            এখনই অর্ডার করুন
-          </button>
-        </div>
+        <OrderButton />
       </div>
     </section>
   );

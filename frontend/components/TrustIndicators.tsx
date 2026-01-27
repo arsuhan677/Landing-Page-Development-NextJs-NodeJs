@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShoppingCart, CheckCircle2 } from 'lucide-react';
+import OrderButton from './OrderButton';
 
 const TrustIndicators = () => {
   const points = [
@@ -15,7 +16,7 @@ const TrustIndicators = () => {
     <section className="bg-[#FFF5ED] py-4 lg:py-16">
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-4xl font-bold text-[#333]">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#333]">
             কেন আমাদের থেকে কিনবেন
           </h2>
         </div>
@@ -35,12 +36,7 @@ const TrustIndicators = () => {
         </div>
 
         {/* Bottom CTA Button */}
-        <div className="flex justify-center mt-12">
-          <button className="bg-[#F37021] hover:bg-orange-600 text-white font-bold py-4 px-12 rounded-2xl flex items-center gap-3 shadow-lg shadow-orange-200 transition-all active:scale-95">
-            <ShoppingCart size={22} />
-            এখনই অর্ডার করুন
-          </button>
-        </div>
+        <OrderButton className='mt-8' />
       </div>
     </section>
   );
