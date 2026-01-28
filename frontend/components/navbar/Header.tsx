@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import OrderButton from "../OrderButton";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    // sticky top-0 এবং z-50 নিশ্চিত করে এটি সবসময় উপরে থাকবে
     <header className="w-full sticky top-0 z-50 shadow-md"> 
       {/* Top Navbar */}
       <div className="bg-[#F37021]"> 
@@ -49,7 +49,6 @@ export default function Header() {
       </div>
 
       {/* Mobile Menu Overlay */}
-      {/* h-screen এবং fixed ব্যবহার করা হয়েছে যাতে মোবাইল মেনু ওপেন হলে স্ক্রল লক থাকে */}
       <div
         className={`absolute top-full left-0 w-full bg-[#F37021] text-white shadow-2xl transition-all duration-300 ease-in-out md:hidden overflow-hidden ${
           open ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
@@ -68,7 +67,7 @@ export default function Header() {
               href="#order"
               className="block w-full bg-white text-[#F37021] text-center py-4 rounded-2xl font-bold shadow-lg text-lg"
             >
-              🛒 এখনই অর্ডার করুন
+              <OrderButton/>
             </Link>
           </div>
         </nav>

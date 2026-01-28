@@ -4,7 +4,7 @@ import { Minus, Plus, ShieldCheck } from 'lucide-react';
 
 const CheckoutSection = () => {
   const [quantity, setQuantity] = useState(1);
-  const price = 500;
+  const price = 100;
 
   return (
     <section className="bg-[#FFF5ED] py-16">
