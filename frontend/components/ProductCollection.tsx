@@ -1,38 +1,43 @@
-import React from 'react';
-import { ShoppingCart } from 'lucide-react';
-import OrderButton from './OrderButton';
+"use client";
+
+import { useEffect, useState } from "react";
+import OrderButton from "./OrderButton";
+  type Product = {
+  id: string; 
+  name: string;
+  image: string;
+  price: number;
+  discount?: number;
+  stock: boolean;
+  description: string;
+  is_active: boolean;
+  is_hero: boolean;
+}
 
 const ProductCollection = () => {
-  const products = [
-    {
-      id: 1,
-      name: "ভিটামিন সি সিরাম",
-      price: 500,
-      originalPrice: 1000,
-      image: "/images/single.jpeg",
-    },
-    {
-      id: 2,
-      name: "হায়ালুরোনিক সিরাম",
-      price: 650,
-      originalPrice: 1200,
-      image: "/images/single.jpeg",
-    },
-    {
-      id: 3,
-      name: "অ্যালোভেরা জেল",
-      price: 450,
-      originalPrice: 900,
-      image: "/images/single.jpeg",
-    },
-    {
-      id: 4,
-      name: "নিয়াসিনামাইড সিরাম",
-      price: 700,
-      originalPrice: 1300,
-      image: "/images/single.jpeg",
-    },
-  ];
+
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/products");
+        const data = await res.json();
+        // Active products filter
+        const activeProducts = data.filter(p => p.is_active);
+        setProducts(activeProducts);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (loading) return <p className="text-center py-20">Loading products...</p>;
 
   return (
     <section className="py-16">
@@ -49,16 +54,16 @@ const ProductCollection = () => {
 
         {/* Product Grid */}
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6 mb-12">
-          {products.map((product) => (
-            <div 
-              key={product.id} 
+          {products.map((product, index) => (
+            <div
+              key={index}
               className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col items-center p-2"
             >
               {/* Product Image Wrapper */}
-              <div className="bg-[#FFF5ED] w-full rounded-lg flex items-center justify-center p-6">
-                <img 
-                  src={product.image} 
-                  alt={product.name} 
+              <div className="bg-[#FFF5ED] w-full rounded-lg flex items-center justify-center">
+                <img
+                  src={product.image}
+                  alt={product.name}
                   className="max-h-full object-contain hover:scale-105 transition-transform duration-300"
                 />
               </div>
@@ -68,17 +73,28 @@ const ProductCollection = () => {
                 <h3 className="font-bold text-[#333] text-sm lg:text-lg mb-2">
                   {product.name}
                 </h3>
+                <p className="text-gray-500 text-sm mb-2">{product.description}</p>
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-lg lg:text-xl font-bold text-[#F37021]">
-                    ৳ {product.price}
+                    ৳ {product.price - product.discount}
                   </span>
-                  <span className="text-gray-400 line-through text-sm">
-                    ৳ {product.originalPrice}
-                  </span>
+                  {product.discount > 0 && (
+                    <span className="text-gray-400 line-through text-sm">
+                      ৳ {product.price}
+                    </span>
+                  )}
                 </div>
+                <p className={`mb-2 text-sm ${product.stock ? 'text-green-600' : 'text-red-600'}`}>
+                  {product.stock ? "In Stock" : "Out of Stock"}
+                </p>
 
                 {/* Card Button */}
-                <button className="w-full bg-[#F37021] hover:bg-orange-600 text-white lg:font-bold py-2 lg:py-3 rounded-2xl transition-colors">
+                <button
+                  disabled={!product.stock}
+                  className={`w-full ${
+                    product.stock ? "bg-[#F37021] hover:bg-orange-600" : "bg-gray-300 cursor-not-allowed"
+                  } text-white lg:font-bold py-2 lg:py-3 rounded-2xl transition-colors`}
+                >
                   অর্ডার করুন
                 </button>
               </div>
@@ -94,3 +110,17 @@ const ProductCollection = () => {
 };
 
 export default ProductCollection;
+
+
+
+
+
+// type Product = {
+//   id: string;
+//   name: string;
+//   image: string;
+//   price: number;
+//   discount?: number;
+// };
+
+

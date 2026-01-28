@@ -1,9 +1,11 @@
+"use client"
+
 import React from 'react';
 import { ShoppingCart } from 'lucide-react';
 
 interface OrderButtonProps {
   text?: string;
-  className?: string; // প্রয়োজনে আলাদা স্টাইল যোগ করার জন্য
+  className?: string;
 }
 
 const OrderButton = ({ text = "এখনই অর্ডার করুন", className = "" }: OrderButtonProps) => {
