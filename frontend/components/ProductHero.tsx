@@ -165,7 +165,7 @@ const ProductHero = () => {
       try {
         const res = await fetch("http://localhost:5000/api/hero");
         const data: Hero[] = await res.json();
-        setHero(data[0] || null); // DB থেকে যেটা প্রথম আসবে সেটাই দেখাবে
+        setHero(data[0] || null);
       } catch (error) {
         console.error("Hero fetch error:", error);
       } finally {

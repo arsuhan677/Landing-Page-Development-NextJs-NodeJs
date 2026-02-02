@@ -1,4 +1,4 @@
-import CertificationSection from "../components/CertificationSection";
+// import CertificationSection from "../components/CertificationSection";
 import CheckoutSection from "../components/CheckoutSection";
 import CustomerReviews from "../components/CustomerReviews";
 import FAQSection from "../components/FAQSection";
@@ -22,7 +22,7 @@ export default function Home() {
       <BeforeAfterSection />
       <ProductGallery />
       <ProductCollection />
-      <CertificationSection />
+      {/* <CertificationSection /> */}
       <CustomerReviews />
       <TrustIndicators />
       <FAQSection />

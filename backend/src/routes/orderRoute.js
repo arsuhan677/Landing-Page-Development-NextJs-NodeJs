@@ -1,12 +1,11 @@
-const express = require("express");
-const router = express.Router();
-const { createOrder, getAllOrders, updateOrderStatus } = require("../controllers/orderController");
-const adminAuth = require("../middleware/adminAuth");
+// const express = require("express");
+// const router = express.Router();
+// const orderController = require("../controllers/orderController");
 
-router.post("/create", createOrder);
+// // Form fill হলে unconfirmed save
+// router.post("/unconfirmed", orderController.createUnconfirmedOrder);
 
-router.get("/all", adminAuth, getAllOrders);
+// // Confirm button দিলে confirmed save
+// router.post("/confirm", orderController.confirmOrder);
 
-router.put("/update/:orderId", adminAuth, updateOrderStatus);
-
-module.exports = router;
+// module.exports = router;
