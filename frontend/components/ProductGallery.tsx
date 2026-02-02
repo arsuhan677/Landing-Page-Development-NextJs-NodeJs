@@ -1,31 +1,42 @@
 "use client";
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import { ChevronLeft, ChevronRight, ShoppingCart } from 'lucide-react';
-
-// Import Swiper styles
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import OrderButton from './OrderButton';
 
+type Productimg = {
+  id: string;
+  image: string;
+};
+
 const ProductGallery = () => {
-  const products = [
-    { id: 1, img: "/images/single.jpeg", alt: "Hyaluronic Acid" },
-    { id: 2, img: "/images/single.jpeg", alt: "Vitamin C" },
-    { id: 3, img: "/images/single.jpeg", alt: "Vitamin E" },
-    { id: 4, img: "/images/single.jpeg", alt: "Serums" },
-  ];
+  const [products, setProducts] = useState<Productimg[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/productgallry");
+        const data = await res.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   return (
-    <section className=" py-16">
+    <section className="py-16">
       <div className="container mx-auto px-6 text-center relative">
-        
         {/* Header */}
         <div className="mb-10">
           <h2 className="text-2xl md:text-3xl font-bold text-[#333] mb-2">প্রোডাক্ট গ্যালারি</h2>
-          <p className="text-gray-500">আমাদের প্রিমিয়াম স্কিনকেয়ার প্রোডাক্ট কালেকশন দেখুন</p>
+          <p className="text-gray-500">আমাদের প্রিমিয়াম স্কিনকেয়ার প্রোডাকশন কালেকশন দেখুন</p>
         </div>
 
         {/* Slider Container */}
@@ -36,31 +47,29 @@ const ProductGallery = () => {
             slidesPerView={1}
             loop={true}
             autoplay={{ delay: 3000 }}
-            pagination={{ 
-              clickable: true,
-              el: '.custom-pagination'
-            }}
-            navigation={{
-              nextEl: '.prev-btn',
-              prevEl: '.next-btn',
-            }}
+            pagination={{ clickable: true, el: '.custom-pagination' }}
+            navigation={{ nextEl: '.prev-btn', prevEl: '.next-btn' }}
             breakpoints={{
               640: { slidesPerView: 2 },
               1024: { slidesPerView: 3 },
             }}
             className="pb-16"
           >
-            {products.map((product) => (
-              <SwiperSlide key={product.id}>
-                <div className="bg-white p-4 rounded-3xl shadow-sm border border-orange-50 aspect-square flex items-center justify-center overflow-hidden">
-                  <img 
-                    src={product.img} 
-                    alt={product.alt} 
-                    className="max-h-full object-contain hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-              </SwiperSlide>
-            ))}
+            {products.length > 0 ? (
+              products.map((product, index) => (
+                <SwiperSlide key={index}>
+                  <div className="bg-white p-4 rounded-3xl shadow-sm border border-orange-50 aspect-square flex items-center justify-center overflow-hidden">
+                    <img 
+                      src={product.image} 
+                      alt="Product Image"
+                      className="max-h-full object-contain hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                </SwiperSlide>
+              ))
+            ) : (
+              <p>Loading products...</p>
+            )}
           </Swiper>
 
           {/* Custom Navigation Buttons */}

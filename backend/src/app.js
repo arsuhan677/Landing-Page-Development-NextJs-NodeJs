@@ -9,7 +9,8 @@ const productRoutes = require("./routes/productRoutes");
 const reviewRoute = require("./routes/reviewRoute");
 const ingredientRoute = require("./routes/ingredientRoute");
 const usageGuidelinesRoutes = require("./routes/usageGuidelinesRoutes");
-const afterandbeforRoutes = require("./routes/afterandbeforRoutes")
+const afterandbeforRoutes = require("./routes/afterandbeforRoutes");
+const productgallryRoutes = require("./routes/productgallryRoutes")
 // const orderRoutes = require("./routes/orderRoute");
 
 
@@ -25,7 +26,8 @@ app.use("/api/products", productRoutes);
 app.use("/api/review", reviewRoute );
 app.use("/api/ingredient", ingredientRoute);
 app.use("/api/usageguideline", usageGuidelinesRoutes);
-app.use("/api/afterandbefor", afterandbeforRoutes)
+app.use("/api/afterandbefor", afterandbeforRoutes);
+app.use("/api/productgallry", productgallryRoutes)
 // app.use("/api/orders", require("./routes/orderRoutes"));
 
 app.use(cors({
