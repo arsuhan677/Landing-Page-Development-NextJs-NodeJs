@@ -1,4 +1,4 @@
-class UfterandBefor {
+class AfterandBefor {
   constructor({ image }) {
     this.image = image;
     this.created_at = new Date();
@@ -6,4 +6,4 @@ class UfterandBefor {
   }
 }
 
-module.exports = UfterandBefor;
+module.exports = AfterandBefor;
