@@ -19,7 +19,7 @@ const CheckoutSection = () => {
             <div className="border-2 border-[#F37021] bg-orange-50/50 rounded-2xl p-4 flex items-center justify-between mb-8">
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center p-2">
-                  <img src="/images/single.jpeg" alt="Serum" className="object-contain" />
+                  <img src="/images/1.png" alt="Serum" className="object-contain" />
                 </div>
                 <div>
                   <h3 className="font-bold text-[#333]">ভিটামিন সি সিরাম</h3>
@@ -36,7 +36,7 @@ const CheckoutSection = () => {
 
             {/* Product Large Image */}
             <div className="text-center">
-              <img src="/images/single.jpeg" alt="Product" className="mx-auto w-48 mb-4" />
+              <img src="/images/1.png" alt="Product" className="mx-auto w-48 mb-4" />
               <h3 className="text-xl font-bold text-[#333] mb-1">ভিটামিন সি সিরাম</h3>
               <p className="text-2xl font-bold text-[#F37021]">৳ {price} <span className="text-sm text-gray-400 line-through">৳ ১০০০</span></p>
             </div>

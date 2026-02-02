@@ -11,7 +11,6 @@ import OrderButton from "./OrderButton";
   stock: boolean;
   description: string;
   is_active: boolean;
-  is_hero: boolean;
 }
 
 const ProductCollection = () => {
@@ -57,14 +56,14 @@ const ProductCollection = () => {
           {products.map((product, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col items-center p-2"
+              className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow flex flex-col items-center p-2"
             >
               {/* Product Image Wrapper */}
               <div className="bg-[#FFF5ED] w-full rounded-lg flex items-center justify-center">
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="max-h-full object-contain hover:scale-105 transition-transform duration-300"
+                  className="max-h-full object-contain rounded-lg"
                 />
               </div>
 
@@ -93,7 +92,7 @@ const ProductCollection = () => {
                   disabled={!product.stock}
                   className={`w-full ${
                     product.stock ? "bg-[#F37021] hover:bg-orange-600" : "bg-gray-300 cursor-not-allowed"
-                  } text-white lg:font-bold py-2 lg:py-3 rounded-2xl transition-colors`}
+                  } text-white lg:font-bold py-2 lg:py-3 rounded-2xl transition-colors cursor-pointer`}
                 >
                   অর্ডার করুন
                 </button>
