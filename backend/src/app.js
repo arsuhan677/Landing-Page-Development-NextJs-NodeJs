@@ -12,6 +12,7 @@ const usageGuidelinesRoutes = require("./routes/usageGuidelinesRoutes");
 const afterbeforRoutes = require("./routes/afterbeforRoutes");
 const productgallryRoutes = require("./routes/productgallryRoutes")
 // const orderRoutes = require("./routes/orderRoute");
+const orderRoutes = require("./routes/orderRoutes");
 
 
 require("./config/firebase");
@@ -29,6 +30,7 @@ app.use("/api/usageguideline", usageGuidelinesRoutes);
 app.use("/api/productgallry", productgallryRoutes);
 app.use("/api/afterbefor", afterbeforRoutes);
 // app.use("/api/orders", require("./routes/orderRoutes"));
+app.use("/api/orders", orderRoutes);
 
 app.use(cors({
   origin: "http://localhost:5000",

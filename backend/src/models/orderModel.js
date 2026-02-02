@@ -1,44 +1,16 @@
-// const db = require('../firebase');
+class Order {
+  constructor({ name, mobile, address, district, note, quantity, total, status }) {
+    this.name = name;
+    this.mobile = mobile;
+    this.address = address;
+    this.district = district;
+    this.note = note || "";
+    this.quantity = quantity || 1;
+    this.total = total || 0;
+    this.status = status || "pending";
+    this.createdAt = new Date();
+    this.updatedAt = new Date();
+  }
+}
 
-// const UnconfirmedOrders = db.collection("unconfirmedOrders");
-// const ConfirmedOrders = db.collection("confirmedOrders");
-
-// class Order {
-//   static async saveUnconfirmed(orderData) {
-//     const docRef = UnconfirmedOrders.doc();
-//     await docRef.set({
-//       ...orderData,
-//       status: "unconfirmed",
-//       createdAt: new Date().toISOString()
-//     });
-//     return docRef.id;
-//   }
-
-//   static async saveConfirmed(orderData) {
-//     const docRef = ConfirmedOrders.doc();
-//     await docRef.set({
-//       ...orderData,
-//       status: "confirmed",
-//       createdAt: new Date().toISOString()
-//     });
-//     return docRef.id;
-//   }
-
-//   static async moveToConfirmed(orderId, confirmedData) {
-//     // Unconfirmed থেকে ডেটা নিয়ে Confirmed-এ সেট করা
-//     const unconfirmedDoc = UnconfirmedOrders.doc(orderId);
-//     const doc = await unconfirmedDoc.get();
-//     if (!doc.exists) throw new Error("Unconfirmed order not found");
-
-//     await ConfirmedOrders.doc(orderId).set({
-//       ...doc.data(),
-//       ...confirmedData,
-//       status: "confirmed",
-//       confirmedAt: new Date().toISOString()
-//     });
-
-//     await unconfirmedDoc.delete();
-//   }
-// }
-
-// module.exports = Order;
+module.exports = Order;
