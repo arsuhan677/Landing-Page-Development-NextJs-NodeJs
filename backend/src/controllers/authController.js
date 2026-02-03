@@ -15,7 +15,7 @@ const login = async (req, res) => {
       return res.status(403).json({ message: "Access denied" });
     }
 
-    // Successful login
+    // Successfulll
     res.status(200).json({ message: `Welcome ${admin.email}` });
   } catch (error) {
     res.status(500).json({ message: error.message });
