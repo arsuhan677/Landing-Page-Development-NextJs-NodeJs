@@ -17,7 +17,6 @@ export default function LoginPage() {
       const data = await res.json();
       setMessage(data.message);
       if (res.ok) {
-        // Redirect to dashboard
         window.location.href = "/dashboard";
       }
     } catch (err) {
@@ -27,36 +26,35 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
+    <>
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500">
       <form
         onSubmit={handleLogin}
-        className="bg-white p-8 rounded shadow-md w-full max-w-sm"
+        className="bg-white p-8 rounded-xl shadow-lg"
       >
-        <h1 className="text-2xl mb-4">Admin Login</h1>
+        <h1 className="text-3xl font-semibold mb-6 text-center text-gray-800">
+          Admin Login
+        </h1>
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full p-2 mb-4 border rounded"
-          required
+          className="w-full p-3 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-400"
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-2 mb-4 border rounded"
-          required
+          className="w-full p-3 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-400"
         />
-        <button
-          type="submit"
-          className="w-full bg-blue-500 border text-cyan-500 cursor-pointer p-2 rounded hover:bg-blue-600"
-        >
+        <button className="w-full border border-gray-300 cursor-pointer bg-purple-600 text-white p-3 rounded hover:bg-purple-700 transition-colors">
           Login
         </button>
-        {message && <p className="mt-2 text-red-500">{message}</p>}
+        {message && <p className="mt-3 text-center text-red-500">{message}</p>}
       </form>
     </div>
+    </>
   );
 }

@@ -1,4 +1,4 @@
-// import CertificationSection from "../components/CertificationSection";
+import Image from "next/image";
 import CheckoutSection from "../components/CheckoutSection";
 import CustomerReviews from "../components/CustomerReviews";
 import FAQSection from "../components/FAQSection";
@@ -9,7 +9,6 @@ import ProductGallery from "../components/ProductGallery";
 import ProductHero from "../components/ProductHero";
 import TrustIndicators from "../components/TrustIndicators";
 import UsageSteps from "../components/UsageSteps";
-import Image from "next/image";
 import BeforeAfterSection from "../components/BeforeAfterSection";
 
 export default function Home() {
@@ -22,7 +21,6 @@ export default function Home() {
       <BeforeAfterSection />
       <ProductGallery />
       <ProductCollection />
-      {/* <CertificationSection /> */}
       <CustomerReviews />
       <TrustIndicators />
       <FAQSection />
