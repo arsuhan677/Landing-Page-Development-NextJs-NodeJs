@@ -3,6 +3,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv").config();
 
+
+const authRoutes = require("./routes/authRoutes");
 // const adminRoutes = require("./routes/adminRoutes");
 const heroRoutes = require("./routes/heroRoutes")
 const productRoutes = require("./routes/productRoutes");
@@ -20,7 +22,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
+app.use("/api/auth", authRoutes);
 // app.use("/api/admin", adminRoutes);
 app.use("/api/hero", heroRoutes);
 app.use("/api/products", productRoutes);

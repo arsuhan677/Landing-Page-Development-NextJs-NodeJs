@@ -38,7 +38,7 @@ const FAQSection = () => {
   ];
 
   return (
-    <section className="bg-[#FFF5ED] py-16">
+    <section id='#FAQ' className="bg-[#FFF5ED] py-16">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-10">

@@ -8,14 +8,14 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-white border-t border-orange-100 pt-16 pb-8">
+    <footer className="bg-gray-800 border-t border-orange-100 pt-16 pb-8">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           
           {/* Brand & Description */}
           <div className="space-y-4">
             <h2 className="text-3xl font-bold text-[#F37021]">REVO</h2>
-            <p className="text-gray-500 text-sm leading-relaxed">
+            <p className="text-white text-sm leading-relaxed">
               আমরা দিচ্ছি প্রিমিয়াম কোয়ালিটির স্কিনকেয়ার সলিউশন। আমাদের লক্ষ্য আপনার প্রাকৃতিক সৌন্দর্যকে আরও ফুটিয়ে তোলা।
             </p>
             <div className="flex gap-4">
@@ -33,28 +33,28 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-bold text-gray-800 mb-6 text-lg">প্রয়োজনীয় লিংক</h3>
+            <h3 className="font-bold text-white mb-6 text-lg">প্রয়োজনীয় লিংক</h3>
             <ul className="space-y-3">
-              <li><Link href="#ingredients" className="text-gray-500 hover:text-[#F37021] transition-colors">উপাদানসমূহ</Link></li>
-              <li><Link href="#usage" className="text-gray-500 hover:text-[#F37021] transition-colors">ব্যবহার বিধি</Link></li>
-              <li><Link href="#order" className="text-gray-500 hover:text-[#F37021] transition-colors">অর্ডার করুন</Link></li>
-              <li><Link href="#faq" className="text-gray-500 hover:text-[#F37021] transition-colors">প্রশ্ন ও উত্তর</Link></li>
+              <li><Link href="#ingredients" className="text-white hover:text-[#F37021] transition-colors">উপাদানসমূহ</Link></li>
+              <li><Link href="#usage" className="text-white hover:text-[#F37021] transition-colors">ব্যবহার বিধি</Link></li>
+              <li><Link href="#order" className="text-white hover:text-[#F37021] transition-colors">অর্ডার করুন</Link></li>
+              <li><Link href="#faq" className="text-white hover:text-[#F37021] transition-colors">প্রশ্ন ও উত্তর</Link></li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-bold text-gray-800 mb-6 text-lg">যোগাযোগ</h3>
+            <h3 className="font-bold text-white mb-6 text-lg">যোগাযোগ</h3>
             <ul className="space-y-4">
-              <li className="flex items-center gap-3 text-gray-500">
+              <li className="flex items-center gap-3 text-white">
                 <Phone size={18} className="text-[#F37021]" />
                 <span>+880 1XXXXXXXXX</span>
               </li>
-              <li className="flex items-center gap-3 text-gray-500">
+              <li className="flex items-center gap-3 text-white">
                 <Mail size={18} className="text-[#F37021]" />
                 <span>support@revo.com</span>
               </li>
-              <li className="flex items-center gap-3 text-gray-500">
+              <li className="flex items-center gap-3 text-white">
                 <MapPin size={18} className="text-[#F37021]" />
                 <span>ঢাকা, বাংলাদেশ</span>
               </li>
@@ -63,11 +63,11 @@ const Footer = () => {
 
           {/* Policy Links */}
           <div>
-            <h3 className="font-bold text-gray-800 mb-6 text-lg">পলিসি</h3>
+            <h3 className="font-bold text-white mb-6 text-lg">পলিসি</h3>
             <ul className="space-y-3">
-              <li><Link href="#" className="text-gray-500 hover:text-[#F37021] transition-colors">প্রাইভেসি পলিসি</Link></li>
-              <li><Link href="#" className="text-gray-500 hover:text-[#F37021] transition-colors">রিটার্ন ও রিফান্ড</Link></li>
-              <li><Link href="#" className="text-gray-500 hover:text-[#F37021] transition-colors">শর্তাবলী</Link></li>
+              <li><Link href="#" className="text-white hover:text-[#F37021] transition-colors">প্রাইভেসি পলিসি</Link></li>
+              <li><Link href="#" className="text-white hover:text-[#F37021] transition-colors">রিটার্ন ও রিফান্ড</Link></li>
+              <li><Link href="#" className="text-white hover:text-[#F37021] transition-colors">শর্তাবলী</Link></li>
             </ul>
           </div>
         </div>

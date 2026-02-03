@@ -9,14 +9,12 @@ export default function Header() {
 
   return (
     <header className="w-full sticky top-0 z-50 shadow-md"> 
-      {/* Top Navbar */}
       <div className="bg-[#F37021]"> 
-        <div className="container mx-auto px-4 py-3.5 flex items-center justify-between">
+        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           
           {/* Logo */}
           <h1 className="text-white text-2xl font-bold tracking-tight">REVO</h1>
 
-          {/* Desktop Menu */}
           <nav className="hidden md:flex items-center gap-8 font-medium">
             <Link href="/" className="text-white/80 hover:text-white transition">হোম</Link>
             <Link href="#উপাদান" className="text-white/80 hover:text-white transition">উপাদান</Link>
@@ -25,15 +23,13 @@ export default function Header() {
             <Link href="#FAQ" className="text-white/80 hover:text-white transition">FAQ</Link>
           </nav>
 
-          {/* Order Button (Desktop) */}
           <Link
-            href="#order"
-            className="hidden md:flex items-center gap-2 border-2 border-white text-white px-5 py-2 rounded-2xl hover:bg-white hover:text-[#F37021] transition font-bold"
+            href="#checkout"
+            className="hidden md:flex items-center gap-2 border-2 border-white text-white px-5 py-2 rounded-xl hover:bg-white hover:text-[#F37021] transition font-bold"
           >
             🛒 অর্ডার করুন
           </Link>
 
-          {/* Mobile Toggle Button */}
           <button
             onClick={() => setOpen(!open)}
             className="md:hidden text-white text-3xl focus:outline-none"
@@ -48,7 +44,6 @@ export default function Header() {
         🛡️ Trusted • COD Available
       </div>
 
-      {/* Mobile Menu Overlay */}
       <div
         className={`absolute top-full left-0 w-full bg-[#F37021] text-white shadow-2xl transition-all duration-300 ease-in-out md:hidden overflow-hidden ${
           open ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
@@ -67,7 +62,7 @@ export default function Header() {
               href="#order"
               className="block w-full bg-white text-[#F37021] text-center py-4 rounded-2xl font-bold shadow-lg text-lg"
             >
-              <OrderButton/>
+              {/* <OrderButton/> */}
             </Link>
           </div>
         </nav>

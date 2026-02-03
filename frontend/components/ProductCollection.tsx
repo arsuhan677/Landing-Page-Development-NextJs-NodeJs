@@ -101,7 +101,7 @@ const ProductCollection = () => {
           ))}
         </div>
 
-        {/* Global CTA Button */}
+        {/* CTA Buttn */}
         <OrderButton />
       </div>
     </section>
@@ -109,17 +109,5 @@ const ProductCollection = () => {
 };
 
 export default ProductCollection;
-
-
-
-
-
-// type Product = {
-//   id: string;
-//   name: string;
-//   image: string;
-//   price: number;
-//   discount?: number;
-// };
 
 

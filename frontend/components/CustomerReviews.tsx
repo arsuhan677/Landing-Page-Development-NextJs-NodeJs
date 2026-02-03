@@ -22,7 +22,6 @@ const CustomerReviews = () => {
         const res = await fetch("http://localhost:5000/api/review");
         const data: Review[] = await res.json();
         
-        // এখানে setReviews missing ছিল
         setReviews(data);
 
         setLoading(false);
