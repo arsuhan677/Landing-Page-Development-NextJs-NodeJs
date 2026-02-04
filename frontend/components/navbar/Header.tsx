@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import OrderButton from "../OrderButton";
+import OrderButton from "../sections/OrderButton";
 
 export default function Header() {
   const [open, setOpen] = useState(false);

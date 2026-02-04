@@ -3,7 +3,7 @@ import React from 'react'
 export default function page() {
   return (
     <div>
-      <h3>admin pages</h3>
+      <h4>hello befor after page</h4>
     </div>
   )
 }

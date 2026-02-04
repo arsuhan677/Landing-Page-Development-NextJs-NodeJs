@@ -1,15 +1,15 @@
 import Image from "next/image";
-import CheckoutSection from "../components/CheckoutSection";
-import CustomerReviews from "../components/CustomerReviews";
-import FAQSection from "../components/FAQSection";
-import FeaturesSection from "../components/FeaturesSection";
-import IngredientsSection from "../components/IngredientsSection";
-import ProductCollection from "../components/ProductCollection";
-import ProductGallery from "../components/ProductGallery";
-import ProductHero from "../components/ProductHero";
-import TrustIndicators from "../components/TrustIndicators";
-import UsageSteps from "../components/UsageSteps";
-import BeforeAfterSection from "../components/BeforeAfterSection";
+import CheckoutSection from "../components/sections/CheckoutSection";
+import CustomerReviews from "../components/sections/CustomerReviews";
+import FAQSection from "@/components/sections/FAQSection";
+import FeaturesSection from "@/components/sections/FeaturesSection";
+import IngredientsSection from "../components/sections/IngredientsSection";
+import ProductCollection from "../components/sections/ProductCollection";
+import ProductGallery from "@/components/sections/ProductGallery";
+import ProductHero from "../components/sections/ProductHero";
+import TrustIndicators from "../components/sections/TrustIndicators";
+import UsageSteps from "@/components/sections/UsageSteps";
+import BeforeAfterSection from "../components/sections/BeforeAfterSection";
 
 export default function Home() {
   return (

@@ -142,8 +142,8 @@
 "use client";
 
 import { Check, Star, MessageCircle, Truck } from "lucide-react";
-import OrderButton from "./OrderButton";
 import { useEffect, useState } from "react";
+import OrderButton from "./OrderButton";
 
 type Hero = {
   id: string;

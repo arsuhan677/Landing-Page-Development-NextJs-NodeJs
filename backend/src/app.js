@@ -39,7 +39,7 @@ app.use(cors({
   credentials: true
 }));
 
-app.get("/", (req, res) => res.send("Backend running"));
+app.get("/", (req, res) => res.send("Backend running this is suhan"));
 
 module.exports = app;
 
