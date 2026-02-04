@@ -7,7 +7,7 @@ import Image from "next/image";
 import { DeleteProductButton } from "./DeleteProductButton";
 
 interface Product {
-  id: string; 
+  id: number; 
   name: string;
   image: string;
   price: number;
@@ -42,7 +42,7 @@ export default function ProductsPage() {
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold">Products</h1>
         <Button asChild>
-          <Link href="/admin/products/create">Create Product</Link>
+          <Link href="/dashboard/products/create">Create Product</Link>
         </Button>
       </div>
 
@@ -69,7 +69,7 @@ export default function ProductsPage() {
                   {p.image ? (
                     <Image src={p.image} alt={p.name} width={40} height={40} className="rounded" />
                   ) : (
-                    <div className="w-10 h-10 bg-gray-200 rounded flex items-center justify-center text-xs text-gray-500">
+                    <div className="w-full h-1 bg-gray-200 rounded flex items-center justify-between text-xs text-gray-500">
                       No image
                     </div>
                   )}
@@ -80,7 +80,7 @@ export default function ProductsPage() {
                 <td>{p.is_active ? "Active" : "Inactive"}</td>
                 <td className="flex gap-2">
                   <Button asChild size="sm" variant="outline">
-                    <Link href={`/admin/products/${p.id}/edit`}>Edit</Link>
+                    <Link href={`/dashboard/products/${p.id}/edit`}>Edit</Link>
                   </Button>
                   <DeleteProductButton id={p.id} onDeleted={fetchProducts} />
                 </td>
