@@ -1,135 +1,94 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import axios from "axios";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Trash2, Edit, Plus, Loader2 } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import { DeleteProductButton } from "./DeleteProductButton";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/products";
+interface Product {
+  id: string; 
+  name: string;
+  image: string;
+  price: number;
+  discount?: number;
+  stock: boolean;
+  description: string;
+  is_active: boolean;
+}
 
 export default function ProductsPage() {
-  const router = useRouter();
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-
-  // Load products
-  useEffect(() => {
-    fetchProducts();
-  }, []);
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get(`${API_URL}/api/products`);
-      setProducts(res.data.products);
+      const res = await fetch("http://localhost:5000/api/products");
+      const data = await res.json();
+      if (res.ok) setProducts(data);
     } catch (error) {
-      console.error("Error fetching products:", error);
+      console.error(error);
     } finally {
       setLoading(false);
     }
   };
 
-  // Delete product
-  const handleDelete = async (id: string) => {
-    if (!confirm("আপনি কি এই Product মুছতে চান?")) return;
-
-    try {
-      const token = localStorage.getItem("token");
-      await axios.delete(`${API_URL}/api/products/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setProducts(products.filter((p) => p.id !== id));
-    } catch (error) {
-      console.error("Delete error:", error);
-      alert("Product মুছতে সমস্যা হয়েছে।");
-    }
-  };
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <Loader2 className="animate-spin" size={32} />
-      </div>
-    );
-  }
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   return (
-    <div className="p-8">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-3xl font-bold">Products</h1>
-          <p className="text-muted-foreground">Manage products</p>
-        </div>
-        <Button onClick={() => router.push("/dashboard/products/create")}>
-          <Plus size={18} className="mr-2" />
-          Create Product
+    <div className="p-6 space-y-4">
+      <div className="flex justify-between items-center">
+        <h1 className="text-3xl font-bold">Products</h1>
+        <Button asChild>
+          <Link href="/admin/products/create">Create Product</Link>
         </Button>
       </div>
 
-      {/* Table */}
-      <div className="border rounded-lg">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Image</TableHead>
-              <TableHead>Name</TableHead>
-              <TableHead>Price</TableHead>
-              <TableHead>Category</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {products.length === 0 ? (
-              <TableRow>
-                <TableCell colSpan={5} className="text-center py-8 text-muted-foreground">
-                  কোনো Product নেই। নতুন তৈরি করুন।
-                </TableCell>
-              </TableRow>
-            ) : (
-              products.map((product) => (
-                <TableRow key={product.id}>
-                  <TableCell>
-                    <img
-                      src={product.image || "/placeholder.png"}
-                      alt={product.name}
-                      className="w-12 h-12 object-cover rounded"
-                    />
-                  </TableCell>
-                  <TableCell className="font-medium">{product.name} </TableCell>
-                  <TableCell>{product.price}</TableCell>
-                  <TableCell>{product.category}</TableCell>
-                  <TableCell className="text-right">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => router.push(`/dashboard/products/edit/${product.id}`)}
-                    >
-                      <Edit size={16} />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="text-red-600 hover:text-red-700"
-                      onClick={() => handleDelete(product.id)}
-                    >
-                      <Trash2 size={16} />
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))
-            )}
-          </TableBody>
-        </Table>
-      </div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : products.length === 0 ? (
+        <p>No products found.</p>
+      ) : (
+        <table className="w-full border">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((p) => (
+              <tr key={p.id}>
+                <td>
+                  {p.image ? (
+                    <Image src={p.image} alt={p.name} width={40} height={40} className="rounded" />
+                  ) : (
+                    <div className="w-10 h-10 bg-gray-200 rounded flex items-center justify-center text-xs text-gray-500">
+                      No image
+                    </div>
+                  )}
+                </td>
+                <td>{p.name}</td>
+                <td>${p.price}</td>
+                <td>{p.stock ? "In Stock" : "Out of Stock"}</td>
+                <td>{p.is_active ? "Active" : "Inactive"}</td>
+                <td className="flex gap-2">
+                  <Button asChild size="sm" variant="outline">
+                    <Link href={`/admin/products/${p.id}/edit`}>Edit</Link>
+                  </Button>
+                  <DeleteProductButton id={p.id} onDeleted={fetchProducts} />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 }
