@@ -47,6 +47,37 @@ const getProducts = async (req, res) => {
   }
 };
 
+const getSingleProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const docRef = db.collection("products").doc(id);
+    const docSnap = await docRef.get();
+
+    if (!docSnap.exists) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found",
+      });
+    }
+
+    res.json({
+      success: true,
+      data: {
+        id: docSnap.id,
+        ...docSnap.data(),
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch product",
+    });
+  }
+};
+
+
 const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
@@ -73,4 +104,4 @@ const deleteProduct = async (req, res) => {
   }
 };
 
-module.exports = { addProduct, getProducts, updateProduct, deleteProduct };
+module.exports = { addProduct, getProducts, getSingleProduct, updateProduct, deleteProduct };

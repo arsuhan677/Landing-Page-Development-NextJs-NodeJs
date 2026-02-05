@@ -11,17 +11,19 @@ interface DeleteButtonProps {
 
 export default function DeleteButton({ id, onSuccess }: DeleteButtonProps) {
   const handleDelete = async () => {
-    const confirmDelete = confirm("Are you sure you want to delete this product?");
+    const confirmDelete = confirm(
+      "Are you sure you want to delete this product?",
+    );
     if (!confirmDelete) return;
 
     try {
       await axios.delete(`http://localhost:5000/api/products/${id}`);
-      alert("✅ Product deleted");
+      alert("Product deleted");
 
-      onSuccess?.(); // optional callback
+      onSuccess?.();
     } catch (error) {
       console.error(error);
-      alert("❌ Failed to delete product");
+      alert("Failed to delete product");
     }
   };
 
