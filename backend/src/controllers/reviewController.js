@@ -44,6 +44,29 @@ const getReview = async (req, res) => {
   }
 };
 
+const getSingleReview = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      return res.status(400).json({ success: false, message: "Review ID is required" });
+    }
+
+    const docRef = db.collection("review").doc(id);
+    const doc = await docRef.get();
+
+    if (!doc.exists) {
+      return res.status(404).json({ success: false, message: "Review not found" });
+    }
+
+    res.json({ id: doc.id, ...doc.data() });
+  } catch (error) {
+    console.error("Firebase Error:", error);
+    res.status(500).json({ success: false, message: "Failed to fetch review", error: error.message });
+  }
+};
+
+
 const updateReview = async (req, res) => {
   try {
     const { id } = req.params;
@@ -70,4 +93,4 @@ const deleteReview = async (req, res) => {
   }
 };
 
-module.exports = { addRewiew, getReview, updateReview, deleteReview };
+module.exports = { addRewiew, getReview, getSingleReview, updateReview, deleteReview };

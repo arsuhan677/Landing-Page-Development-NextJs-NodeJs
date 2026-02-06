@@ -1,57 +1,33 @@
 "use client";
 
-import { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ProductGallery } from "@/types/gallery";
+import GalleryPage from "./components/Gallery";
 
-export default function CreateHeroPage() {
-  const [form, setForm] = useState({
-    title: "",
-    subtitle: "",
-    description: "",
-    price: "",
-    discount: "",
-    rating: "",
-    image: "",
-  });
+export default function GallaeryPage() {
+  const [gallery, setGallery] = useState<ProductGallery[]>([]);
 
-  const handleChange = (e: any) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  useEffect(() => {
+    const fetchGallery = async () => {
+      const res = await fetch("http://localhost:5000/api/productgallry");
+      const data: ProductGallery[] = await res.json();
+      setGallery(data);
+    };
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-
-    await fetch("http://localhost:5000/api/hero", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
-
-    alert("Hero Created Successfully ✅");
-  };
+    fetchGallery();
+  }, []);
 
   return (
-    <Card className="max-w-2xl mx-auto">
-      <CardHeader>
-        <CardTitle>Create Hero Section</CardTitle>
-      </CardHeader>
+    <div className="space-y-4">
+      {gallery.map((item) => (
+        <GalleryPage productGallery={item} key={item.id} />
+      ))}
 
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <Input name="title" placeholder="Title" onChange={handleChange} />
-          <Input name="subtitle" placeholder="Subtitle" onChange={handleChange} />
-          <Textarea name="description" placeholder="Description" onChange={handleChange} />
-          <Input name="price" placeholder="Price" onChange={handleChange} />
-          <Input name="discount" placeholder="Discount" onChange={handleChange} />
-          <Input name="rating" placeholder="Rating" onChange={handleChange} />
-          <Input name="image" placeholder="Image URL" onChange={handleChange} />
-
-          <Button className="w-full">Save Hero</Button>
-        </form>
-      </CardContent>
-    </Card>
+      <Link href="/dashboard/productgallery/create">
+        <Button>Add Product Gallery</Button>
+      </Link>
+    </div>
   );
 }

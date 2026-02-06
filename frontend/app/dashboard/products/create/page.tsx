@@ -1,6 +1,6 @@
 import React from "react";
-import CreatePost from "../components/CreatePost";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import CreateProduct from "../components/CreatePost";
 
 export default function page() {
   return (
@@ -9,7 +9,7 @@ export default function page() {
             <CardHeader>
               <CardTitle>Create Product</CardTitle>
             </CardHeader>
-      <CreatePost />
+      <CreateProduct />
       </Card>
     </div>
   );

@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const { addHero, getHero, updateHero, deleteHero } = require("../controllers/heroController");
+const { addHero, getHero, updateHero, deleteHero, getSingleHero } = require("../controllers/heroController");
 
 router.post("/", addHero);
 
 router.get("/", getHero);
+
+router.get("/:id", getSingleHero);
 
 router.put("/:id", updateHero);
 

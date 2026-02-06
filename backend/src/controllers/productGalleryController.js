@@ -41,6 +41,30 @@ const getProductGallry = async (req, res) => {
   }
 };
 
+const getSingleProductGallry = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      return res.status(400).json({ success: false, message: "ID is required" });
+    }
+
+    const docRef = db.collection("productgallry").doc(id);
+    const docSnap = await docRef.get();
+
+    if (!docSnap.exists) {
+      return res.status(404).json({ success: false, message: "ProductGallry not found" });
+    }
+
+    const productgallry = { id: docSnap.id, ...docSnap.data() };
+    res.json({ success: true, data: productgallry });
+  } catch (error) {
+    console.error("Firebase Error:", error);
+    res.status(500).json({ success: false, message: "Failed to fetch ProductGallry", error: error.message });
+  }
+};
+
+
 const updateProductGallry = async (req, res) => {
   try {
     const { id } = req.params;
@@ -67,4 +91,4 @@ const deleteProductGallry = async (req, res) => {
   }
 };
 
-module.exports = { addProductGallry, getProductGallry, updateProductGallry, deleteProductGallry };
+module.exports = { addProductGallry, getProductGallry, getSingleProductGallry, updateProductGallry, deleteProductGallry };

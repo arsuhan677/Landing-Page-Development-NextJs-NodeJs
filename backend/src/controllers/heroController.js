@@ -47,6 +47,37 @@ const getHero = async (req, res) => {
   }
 };
 
+const getSingleHero = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const docRef = db.collection("hero").doc(id);
+    const docSnap = await docRef.get();
+
+    if (!docSnap.exists) {
+      return res.status(404).json({
+        success: false,
+        message: "Hero not found",
+      });
+    }
+
+    res.json({
+      success: true,
+      data: {
+        id: docSnap.id,
+        ...docSnap.data(),
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch hero",
+    });
+  }
+};
+
+
 const updateHero = async (req, res) => {
   try {
     const { id } = req.params;
@@ -73,4 +104,4 @@ const deleteHero = async (req, res) => {
   }
 };
 
-module.exports = { addHero, getHero, updateHero, deleteHero };
+module.exports = { addHero, getHero, getSingleHero, updateHero, deleteHero };

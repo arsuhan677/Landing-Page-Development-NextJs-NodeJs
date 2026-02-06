@@ -48,13 +48,13 @@ const data = {
       icon: IconDashboard,
     },
     {
-      title: "Upadan",
-      url: "/dasboard/upadan",
+      title: "Ingredient",
+      url: "/dashboard/ingredient",
       icon: IconFolder,
     },
     {
       title: "Bebohar",
-      url: "/dasboard/bebohar",
+      url: "/dashboard/usage",
       icon: IconDatabase,
     },
     {
@@ -74,7 +74,7 @@ const data = {
     },
     {
       title: "CustomerReview",
-      url: "/admin/review",
+      url: "/dashboard/review",
       icon: IconDatabase,
     },
     {

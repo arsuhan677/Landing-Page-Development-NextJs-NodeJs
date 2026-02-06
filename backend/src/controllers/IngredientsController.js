@@ -42,6 +42,29 @@ const getIngredients = async (req, res) => {
   }
 };
 
+const getIngredientById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      return res.status(400).json({ success: false, message: "ID is required" });
+    }
+
+    const docRef = db.collection("ingredients").doc(id);
+    const doc = await docRef.get();
+
+    if (!doc.exists) {
+      return res.status(404).json({ success: false, message: "Ingredient not found" });
+    }
+
+    res.json({ success: true, data: { id: doc.id, ...doc.data() } });
+  } catch (error) {
+    console.error("Firebase Error:", error);
+    res.status(500).json({ success: false, message: "Failed to fetch ingredient", error: error.message });
+  }
+};
+
+
 const updateIngredient = async (req, res) => {
   try {
     const { id } = req.params;
@@ -68,4 +91,4 @@ const deleteIngredient = async (req, res) => {
   }
 };
 
-module.exports = { addIngredient, getIngredients, updateIngredient, deleteIngredient };
+module.exports = { addIngredient, getIngredients, getIngredientById, updateIngredient, deleteIngredient };

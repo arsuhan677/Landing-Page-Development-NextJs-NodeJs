@@ -1,18 +1,10 @@
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardAction,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
-import EditButton from "@/app/dashboard/products/components/EditButton"
-import DeleteButton from "@/app/dashboard/products/components/DeleteButton"
+import EditButton from "@/app/dashboard/products/components/EditButton";
+import DeleteButton from "@/app/dashboard/products/components/DeleteButton";
 
-import { Product } from "@/types/types"
+import { Product } from "@/types/types";
 
 interface ProductCardProps {
   product: Product;
@@ -21,36 +13,36 @@ interface ProductCardProps {
 
 export function ProductCard({ product, refetch }: ProductCardProps) {
   return (
-    <Card className="relative mx-auto w-full max-w-sm flex border pt-0">
-      
-      <div className="absolute inset-0 z-30 aspect-video bg-black/35" />
-
+    <div className="flex items-center gap-4 border-b px-4 py-3 hover:bg-muted/50">
       <img
         src={product.image}
         alt={product.name}
-        className="relative z-20 aspect-video w-full object-cover brightness-60 grayscale"
+        className="h-12 w-12 rounded-md object-cover"
       />
 
-      <CardHeader>
-        <CardAction>
-          <Badge variant="secondary">{product.name}</Badge>
-        </CardAction>
+      <div className="flex-1">
+        <p className="font-medium">{product.name}</p>
+        <p className="text-sm text-muted-foreground line-clamp-1">
+          {product.description}
+        </p>
+      </div>
 
-        <CardTitle>{product.description}</CardTitle>
-        <p>{product.stock}</p>
+      <Badge variant={product.stock ? "default" : "destructive"}>
+        {product.stock ? "In Stock" : "Out of Stock"}
+      </Badge>
 
-        <CardDescription>
-          Price: ৳{product.price}
-          {product.discount && (
-            <span className="text-red-500 ml-2">Discount: {product.discount}%</span>
-          )}
-        </CardDescription>
-      </CardHeader>
+      <div className="w-28 text-right">
+        <p className="font-semibold">৳{product.price}</p>
+        {product.discount && (
+          <p className="text-xs text-red-500">{product.discount}% off</p>
+        )}
+      </div>
 
-      <CardFooter className="flex gap-2">
+      {/* Actions */}
+      <div className="flex gap-2">
         <EditButton id={product.id} />
         <DeleteButton id={product.id} onSuccess={refetch} />
-      </CardFooter>
-    </Card>
-  )
+      </div>
+    </div>
+  );
 }

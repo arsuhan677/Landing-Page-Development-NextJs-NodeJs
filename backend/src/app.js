@@ -5,7 +5,6 @@ require("dotenv").config();
 
 
 const authRoutes = require("./routes/authRoutes");
-// const adminRoutes = require("./routes/adminRoutes");
 const heroRoutes = require("./routes/heroRoutes")
 const productRoutes = require("./routes/productRoutes");
 const reviewRoute = require("./routes/reviewRoute");
@@ -13,7 +12,6 @@ const ingredientRoute = require("./routes/ingredientRoute");
 const usageGuidelinesRoutes = require("./routes/usageGuidelinesRoutes");
 const afterbeforRoutes = require("./routes/afterbeforRoutes");
 const productgallryRoutes = require("./routes/productgallryRoutes")
-// const orderRoutes = require("./routes/orderRoute");
 const orderRoutes = require("./routes/orderRoutes");
 
 
@@ -23,15 +21,13 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
-// app.use("/api/admin", adminRoutes);
 app.use("/api/hero", heroRoutes);
 app.use("/api/products", productRoutes);
-app.use("/api/review", reviewRoute );
+app.use("/api/review", reviewRoute);
 app.use("/api/ingredient", ingredientRoute);
 app.use("/api/usageguideline", usageGuidelinesRoutes);
 app.use("/api/productgallry", productgallryRoutes);
 app.use("/api/afterbefor", afterbeforRoutes);
-// app.use("/api/orders", require("./routes/orderRoutes"));
 app.use("/api/orders", orderRoutes);
 
 app.use(cors({

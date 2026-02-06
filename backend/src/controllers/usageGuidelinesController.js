@@ -42,6 +42,40 @@ const getusageGuidelines = async (req, res) => {
   }
 };
 
+const getSingleUsageGuidelines = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      return res
+        .status(400)
+        .json({ success: false, message: "UsageGuidelines ID is required" });
+    }
+
+    const docRef = db.collection("usage-guidelines").doc(id);
+    const doc = await docRef.get();
+
+    if (!doc.exists) {
+      return res
+        .status(404)
+        .json({ success: false, message: "UsageGuidelines not found" });
+    }
+
+    res.json({
+      success: true,
+      data: { id: doc.id, ...doc.data() },
+    });
+  } catch (error) {
+    console.error("Firebase Error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch usageGuidelines",
+      error: error.message,
+    });
+  }
+};
+
+
 const updateUsageGuidelinest = async (req, res) => {
   try {
     const { id } = req.params;
@@ -68,4 +102,4 @@ const deleteUsageGuidelines = async (req, res) => {
   }
 };
 
-module.exports = { addusageGuidelines, getusageGuidelines, updateUsageGuidelinest, deleteUsageGuidelines };
+module.exports = { addusageGuidelines, getusageGuidelines, getSingleUsageGuidelines, updateUsageGuidelinest, deleteUsageGuidelines };

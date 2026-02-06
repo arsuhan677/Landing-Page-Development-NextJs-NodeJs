@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import axios from "axios";
-
+import React, { useState } from "react";
+import { api } from "@/utils/api";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -10,10 +9,18 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { CardContent } from "@/components/ui/card";
 
-export default function CreatePost() {
-  const [loading, setLoading] = useState(false);
+interface ProductFormData {
+  name: string;
+  price: number | string;
+  discount?: number | string;
+  image: string;
+  description: string;
+  stock: boolean;
+  is_active: boolean;
+}
 
-  const [formData, setFormData] = useState({
+export default function CreateProduct() {
+  const [formData, setFormData] = useState<ProductFormData>({
     name: "",
     price: "",
     discount: "",
@@ -23,14 +30,20 @@ export default function CreatePost() {
     is_active: true,
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleCheckboxChange = (
+    field: "stock" | "is_active",
+    value: boolean,
+  ) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -38,13 +51,13 @@ export default function CreatePost() {
     setLoading(true);
 
     try {
-      await axios.post("http://localhost:5000/api/products", {
+      await api.post("/products", {
         ...formData,
         price: Number(formData.price),
-        discount: Number(formData.discount),
+        discount: formData.discount ? Number(formData.discount) : 0,
       });
 
-      alert("Product added successfully");
+      alert("Product added successfully!");
 
       setFormData({
         name: "",
@@ -55,103 +68,94 @@ export default function CreatePost() {
         stock: true,
         is_active: true,
       });
-    } catch (error) {
-      console.error(error);
-      alert("Failed to add product");
+    } catch (error: any) {
+      console.error("Failed to add product:", error);
+      alert(error?.response?.data?.message || "Failed to add product");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    // <Card className="max-w-xl mx-auto mt-10">
-    //   <CardHeader>
-    //     <CardTitle>Create Product</CardTitle>
-    //   </CardHeader>
+    <CardContent>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Product Name */}
+        <div>
+          <Label>Product Name</Label>
+          <Input
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Product Name */}
-          <div>
-            <Label>Product Name</Label>
-            <Input
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
+        {/* Price */}
+        <div>
+          <Label>Price</Label>
+          <Input
+            name="price"
+            type="number"
+            value={formData.price}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-          {/* Price */}
-          <div>
-            <Label>Price</Label>
-            <Input
-              name="price"
-              type="number"
-              value={formData.price}
-              onChange={handleChange}
-              required
-            />
-          </div>
+        {/* Discount */}
+        <div>
+          <Label>Discount</Label>
+          <Input
+            name="discount"
+            type="number"
+            value={formData.discount || ""}
+            onChange={handleChange}
+          />
+        </div>
 
-          {/* Discount */}
-          <div>
-            <Label>Discount</Label>
-            <Input
-              name="discount"
-              type="number"
-              value={formData.discount}
-              onChange={handleChange}
-            />
-          </div>
+        {/* Image */}
+        <div>
+          <Label>Image URL</Label>
+          <Input
+            name="image"
+            value={formData.image}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-          {/* Image */}
-          <div>
-            <Label>Image URL</Label>
-            <Input
-              name="image"
-              value={formData.image}
-              onChange={handleChange}
-              required
-            />
-          </div>
+        {/* Description */}
+        <div>
+          <Label>Description</Label>
+          <Textarea
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+          />
+        </div>
 
-          {/* Description */}
-          <div>
-            <Label>Description</Label>
-            <Textarea
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-            />
-          </div>
+        {/* Stock */}
+        <div className="flex items-center gap-3">
+          <Checkbox
+            id="stock"
+            checked={formData.stock}
+            onCheckedChange={(checked) =>
+              handleCheckboxChange("stock", Boolean(checked))
+            }
+          />
+          <Label
+            htmlFor="stock"
+            className={formData.stock ? "text-green-600" : "text-red-600"}
+          >
+            {formData.stock ? "In Stock" : "Out of Stock"}
+          </Label>
+        </div>
 
-          {/* Stock Option */}
-          <div className="flex items-center gap-3">
-            <Checkbox
-              id="stock"
-              checked={formData.stock}
-              onCheckedChange={(checked) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  stock: Boolean(checked),
-                }))
-              }
-            />
-            <Label
-              htmlFor="stock"
-              className={formData.stock ? "text-green-600" : "text-red-600"}
-            >
-              {formData.stock ? "In Stock" : "Out of Stock"}
-            </Label>
-          </div>
-
-          {/* Submit */}
-          <Button type="submit" disabled={loading} className="w-full">
-            {loading ? "Saving..." : "Add Product"}
-          </Button>
-        </form>
-      </CardContent>
-
+        {/* btn*/}
+        <Button type="submit" disabled={loading} className="w-full">
+          {loading ? "Saving..." : "Add Product"}
+        </Button>
+      </form>
+    </CardContent>
   );
 }

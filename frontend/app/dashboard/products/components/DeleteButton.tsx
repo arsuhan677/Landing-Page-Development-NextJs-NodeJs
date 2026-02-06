@@ -1,8 +1,9 @@
 "use client";
 
-import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
+import { api } from "@/utils/api";
+import React from "react";
 
 interface DeleteButtonProps {
   id: string;
@@ -17,12 +18,12 @@ export default function DeleteButton({ id, onSuccess }: DeleteButtonProps) {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/products/${id}`);
-      alert("Product deleted");
+      await api.delete(`/products/${id}`);
+      alert("Product deleted successfully");
 
       onSuccess?.();
     } catch (error) {
-      console.error(error);
+      console.error("Failed to delete product:", error);
       alert("Failed to delete product");
     }
   };

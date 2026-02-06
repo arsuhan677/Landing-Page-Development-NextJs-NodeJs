@@ -1,46 +1,33 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Hero } from "@/types/hero";
+import HeroTitle from "./components/HeroTitle";
 
-export default function HeroListPage() {
-  const [heroes, setHeroes] = useState<any[]>([]);
+export default function HeroPage() {
+  const [hero, setHero] = useState<Hero[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/hero")
-      .then(res => res.json())
-      .then(data => setHeroes(data));
+    const fetchHero = async () => {
+      const res = await fetch("http://localhost:5000/api/hero");
+      const data: Hero[] = await res.json();
+      setHero(data);
+    };
+
+    fetchHero();
   }, []);
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Hero Sections</h1>
-        <Link href="/dashboard/herotitle/create">
-          <Button>Create Hero</Button>
-        </Link>
-      </div>
+    <div className="space-y-4">
+      {hero.map((item) => (
+        <HeroTitle hero={item} key={item.id} />
+      ))}
 
-      <div className="grid md:grid-cols-2 gap-6">
-        {heroes.map(hero => (
-          <Card key={hero.id}>
-            <CardContent className="p-4 space-y-2">
-              <img src={hero.image} className="rounded-lg" />
-              <h2 className="text-xl font-semibold">{hero.title}</h2>
-              <p className="text-sm text-muted-foreground">{hero.subtitle}</p>
-              <p className="text-sm">{hero.description}</p>
-
-              <div className="flex justify-between text-sm font-medium">
-                <span>{hero.price}</span>
-                <span>⭐ {hero.rating}</span>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+      <Link href="/dashboard/herotitle/create">
+        <Button>Add Hero Title</Button>
+      </Link>
     </div>
   );
 }
-
