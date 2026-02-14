@@ -13,7 +13,7 @@ interface ProductCardProps {
 
 export function ProductCard({ product, refetch }: ProductCardProps) {
   return (
-    <div className="flex items-center gap-4 border-b px-4 py-3 hover:bg-muted/50">
+    <div className="flex items-center gap-4 border shadow-sm container mx-auto px-4 rounded-sm py-3 hover:bg-muted/50">
       <img
         src={product.image}
         alt={product.name}

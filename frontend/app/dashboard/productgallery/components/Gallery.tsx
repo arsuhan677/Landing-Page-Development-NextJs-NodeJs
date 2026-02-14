@@ -1,11 +1,7 @@
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
 import {
   Card,
   CardFooter,
-} from "@/components/ui/card"
-
-
+} from "@/components/ui/card";
 
 import { ProductGallery } from "@/types/gallery";
 import DeleteButton from "./DeleteButton";
@@ -16,22 +12,28 @@ interface GProps {
   refetch?: () => void;
 }
 
-export default function GalleryPage({ productGallery, refetch }: GProps) {
+export default function GalleryCard({ productGallery, refetch }: GProps) {
   return (
-    <Card className="relative mx-auto w-full max-w-sm flex border pt-0">
-      
-      <div className="absolute inset-0 z-30 aspect-video bg-black/35" />
+    <Card className="border pt-0 overflow-hidden shadow-sm hover:shadow-md transition grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-      <img
-        src={productGallery.image}
-        alt="gallery img"
-        className="relative z-20 aspect-video w-full object-cover brightness-60 grayscale"
-      />
+      {/* Image */}
+      <div className="relative">
+        <img
+          src={productGallery.image}
+          alt="gallery img"
+          className="aspect-video w-full object-cover"
+        />
+      </div>
 
-      <CardFooter className="flex gap-2">
-        <EditButton id={productGallery.id} />
-        <DeleteButton id={productGallery.id} onSuccess={refetch} />
+      {/* Footer */}
+      <CardFooter className="flex justify-between items-center p-4">
+        <div className="flex gap-2">
+          <EditButton id={productGallery.id} />
+          <DeleteButton id={productGallery.id} onSuccess={refetch} />
+        </div>
       </CardFooter>
+
     </Card>
-  )
+  );
 }
+

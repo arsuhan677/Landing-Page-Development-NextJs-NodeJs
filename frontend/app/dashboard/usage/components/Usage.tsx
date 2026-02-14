@@ -20,21 +20,27 @@ interface UsageProps {
 
 export default function UsagePage({ usage, refetch }: UsageProps) {
   return (
-    <Card className="relative mx-auto w-full max-w-sm flex border pt-0">
-      
-      <div className="absolute inset-0 z-30 pointer-events-none"/>
-      <CardHeader>
-        <CardAction>
-        <CardTitle>{usage.title}</CardTitle>
-        </CardAction>
 
-      </CardHeader>
-          <Badge variant="secondary">{usage.description}</Badge>
-
-      <CardFooter className="flex gap-2">
-        <EditButton id={usage.id} />
-        <DeleteButton id={usage.id} onSuccess={refetch} />
-      </CardFooter>
-    </Card>
+    <Card className="flex items-center border-b px-4 py-3 hover:bg-muted/50">
+          <div className="w-full flex items-center justify-between">
+            {/* Name */}
+            <div className="flex flex-col">
+              <p className="font-semibold text-lg">{usage.title}</p>
+            </div>
+    
+            {/* Description */}
+            <div className="flex justify-center">
+              <p className="text-sm text-muted-foreground max-w-md">
+                {usage.description}
+              </p>
+            </div>
+    
+            {/* Actions */}
+            <div className="flex gap-3">
+              <EditButton id={usage.id} />
+              <DeleteButton id={usage.id} onSuccess={refetch} />
+            </div>
+          </div>
+        </Card>
   )
 }

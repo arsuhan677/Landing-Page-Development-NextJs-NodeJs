@@ -21,13 +21,23 @@ export default function UsagePageTitle() {
 
   return (
     <div className="space-y-4">
-      {ingredient.map((item) => (
-        <UsagePage usage={item} key={item.id} />
-      ))}
+      <div className="flex justify-between items-center container mx-auto px-4">
+        <div>
+          <h2 className="text-xl font-semibold">All Usages</h2>
+          <p className="text-sm">This is the all usage's</p>
+        </div>
+        <div>
+          <Link href="/dashboard/usage/create">
+            <Button>Add Usages</Button>
+          </Link>
+        </div>
+      </div>
 
-      <Link href="/dashboard/usage/create">
-        <Button>Add Usages</Button>
-      </Link>
+      <div className="space-y-4">
+        {ingredient.map((item) => (
+          <UsagePage usage={item} key={item.id} />
+        ))}
+      </div>
     </div>
   );
 }

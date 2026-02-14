@@ -20,14 +20,34 @@ export default function GallaeryPage() {
   }, []);
 
   return (
-    <div className="space-y-4">
+
+  <div className="space-y-4">
+      <div className="flex justify-between items-center container mx-auto px-4">
+        <div>
+          <h2 className="text-xl font-semibold">All Products Gallery</h2>
+          <p className="text-sm">
+            This is the all product gallery's
+          </p>
+        </div>
+        <div>
+          <Link href="/dashboard/productgallery/create">
+        <Button>Add Product Gallery</Button>
+      </Link>
+        </div>
+      </div>
+
+      <div className="space-y-4">
       {gallery.map((item) => (
         <GalleryPage productGallery={item} key={item.id} />
       ))}
 
-      <Link href="/dashboard/productgallery/create">
-        <Button>Add Product Gallery</Button>
-      </Link>
+      
     </div>
+      
+    </div>    
+
+    
   );
 }
+
+
