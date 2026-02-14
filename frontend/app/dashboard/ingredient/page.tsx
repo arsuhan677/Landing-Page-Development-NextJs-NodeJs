@@ -20,14 +20,14 @@ export default function IngredientPageTitle() {
   }, []);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 grid grid-cals-2 container mx-auto px-4 ">
       {ingredient.map((item) => (
         <IngredientPage ingredient={item} key={item.id} />
       ))}
-
-      <Link href="/dashboard/ingredient/create">
+{/* 
+      <Link className="flex container mx-auto px-4" href="/dashboard/ingredient/create">
         <Button>Add Ingredient</Button>
-      </Link>
+      </Link> */}
     </div>
   );
 }

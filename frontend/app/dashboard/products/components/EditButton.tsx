@@ -16,7 +16,7 @@ export default function EditButton({ id }: EditButtonProps) {
       variant="outline"
       size="sm"
       onClick={() => router.push(`/dashboard/products/${id}/edit`)}
-      className="flex items-center gap-2"
+      className="flex items-center gap-2 cursor-pointer"
     >
       <Pencil size={16} />
       Edit

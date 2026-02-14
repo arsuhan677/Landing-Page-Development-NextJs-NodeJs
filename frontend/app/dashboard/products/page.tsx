@@ -32,6 +32,19 @@ export default function Page() {
 
   return (
     <div className="space-y-4">
+      <div className="flex justify-between items-center container mx-auto px-4">
+        <div>
+          <h2 className="text-xl font-semibold">All Products</h2>
+          <p className="text-sm">
+            This is the all product collection's
+          </p>
+        </div>
+        <div>
+          <Link href="/dashboard/products/create">
+            <Button>Create Products</Button>
+          </Link>
+        </div>
+      </div>
       {products.length > 0 ? (
         products.map((product) => (
           <ProductCard product={product} key={product.id} />
@@ -39,10 +52,6 @@ export default function Page() {
       ) : (
         <p className="text-center text-gray-500">No products found</p>
       )}
-
-      <Link className="mx-4" href="/dashboard/products/create">
-        <Button>Create Products</Button>
-      </Link>
     </div>
   );
 }

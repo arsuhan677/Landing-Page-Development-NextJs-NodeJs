@@ -21,13 +21,49 @@ export default function Page() {
 
   return (
     <div className="space-y-4">
+      <div className="flex justify-between items-center container mx-auto px-4">
+        <div>
+          <h2 className="text-xl font-semibold">All Coustomer Review</h2>
+          <p className="text-sm">
+            This is the all customer review's
+          </p>
+        </div>
+        <div>
+          <Link href="/dashboard/review/create">
+        <Button>Create review</Button>
+      </Link>
+        </div>
+      </div>
+
       {review.map((review) => (
         <ReviewCard review={review} key={review.id} />
       ))}
-
-      <Link href="/dashboard/review/create">
-        <Button>Create review</Button>
-      </Link>
     </div>
   );
 }
+
+
+// return (
+//     <div className="space-y-4">
+//       <div className="flex justify-between items-center container mx-auto px-4">
+//         <div>
+//           <h2 className="text-xl font-semibold">All Products</h2>
+//           <p className="text-sm">
+//             This is the all product collection's
+//           </p>
+//         </div>
+//         <div>
+//           <Link href="/dashboard/products/create">
+//             <Button>Create Products</Button>
+//           </Link>
+//         </div>
+//       </div>
+//       {products.length > 0 ? (
+//         products.map((product) => (
+//           <ProductCard product={product} key={product.id} />
+//         ))
+//       ) : (
+//         <p className="text-center text-gray-500">No products found</p>
+//       )}
+//     </div>
+//   );

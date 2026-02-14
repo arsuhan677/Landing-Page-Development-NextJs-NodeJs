@@ -20,7 +20,7 @@ export default function HeroPage() {
   }, []);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 flex container mx-auto px-4">
       {hero.map((item) => (
         <HeroTitle hero={item} key={item.id} />
       ))}
