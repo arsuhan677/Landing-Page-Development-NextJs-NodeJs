@@ -20,14 +20,23 @@ export default function HeroPage() {
   }, []);
 
   return (
-    <div className="space-y-4 flex container mx-auto px-4">
-      {hero.map((item) => (
-        <HeroTitle hero={item} key={item.id} />
-      ))}
-
-      <Link href="/dashboard/herotitle/create">
-        <Button>Add Hero Title</Button>
-      </Link>
+    <div className="space-y-4">
+      <div className="flex justify-between items-center container mx-auto px-4">
+        <div>
+          <h2 className="text-xl font-semibold">All HeroTite</h2>
+          <p className="text-sm">This is the all herotitle collection's</p>
+        </div>
+        <div>
+          <Link href="/dashboard/herotitle/create">
+            <Button>Add Hero Title</Button>
+          </Link>
+        </div>
+      </div>
+      {hero.length > 0 ? (
+        hero.map((item) => <HeroTitle hero={item} key={item.id} />)
+      ) : (
+        <p className="text-center text-gray-500">No products found</p>
+      )}
     </div>
   );
 }

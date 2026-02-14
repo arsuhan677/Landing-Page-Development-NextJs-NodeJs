@@ -3,6 +3,7 @@
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
+import { api } from "@/utils/api";
 
 interface DeleteButtonProps {
   id: string;
@@ -17,8 +18,7 @@ export default function DeleteButton({ id, onSuccess }: DeleteButtonProps) {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/productgallry/${id}`);
-      alert("gallery deleted");
+      await api.delete(`/productgallry/${id}`);
 
       onSuccess?.();
     } catch (error) {
@@ -35,7 +35,6 @@ export default function DeleteButton({ id, onSuccess }: DeleteButtonProps) {
       className="flex items-center gap-2"
     >
       <Trash2 size={16} />
-      Delete
     </Button>
   );
 }

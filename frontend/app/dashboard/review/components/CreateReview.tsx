@@ -60,8 +60,8 @@ export default function CreateReview() {
     //     <CardTitle>Create Product</CardTitle>
     //   </CardHeader>
 
-    <CardContent>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <CardContent className="w-full">
+      <form onSubmit={handleSubmit} className="mx-auto space-y-4 ">
         <div>
           <Label>Review Name</Label>
           <Input

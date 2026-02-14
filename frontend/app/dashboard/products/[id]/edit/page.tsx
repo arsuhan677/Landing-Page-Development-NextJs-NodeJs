@@ -71,11 +71,15 @@ export default function EditProductPage() {
 
   return (
     <CardContent>
+      <div className="py-6">
+        <h2 className="text-2xl font-bold">Update This Product</h2>
+        <p>This is update product</p>
+      </div>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <Label>Product Name</Label>
-            <Input
+            <Input className="mt-2"
               name="name"
               value={formData.name}
               onChange={handleChange}
@@ -84,7 +88,7 @@ export default function EditProductPage() {
           </div>
           <div>
             <Label>Price</Label>
-            <Input
+            <Input className="mt-2"
               name="price"
               type="number"
               value={formData.price}
@@ -97,7 +101,7 @@ export default function EditProductPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <Label>Discount</Label>
-            <Input
+            <Input className="mt-2"
               name="discount"
               type="number"
               value={formData.discount ?? ""}
@@ -106,7 +110,7 @@ export default function EditProductPage() {
           </div>
           <div>
             <Label>Image URL</Label>
-            <Input
+            <Input className="mt-2"
               name="image"
               value={formData.image}
               onChange={handleChange}
@@ -117,7 +121,7 @@ export default function EditProductPage() {
 
         <div>
           <Label>Description</Label>
-          <Textarea
+          <Textarea className="mt-2"
             name="description"
             value={formData.description}
             onChange={handleChange}
@@ -126,7 +130,7 @@ export default function EditProductPage() {
 
         {/* Stock */}
         <div className="flex items-center gap-3">
-          <Checkbox
+          <Checkbox className="mt-2"
             id="stock"
             checked={formData.stock}
             onCheckedChange={(checked) =>
@@ -135,7 +139,7 @@ export default function EditProductPage() {
           />
           <Label
             htmlFor="stock"
-            className={formData.stock ? "text-green-600" : "text-red-600"}
+            className={formData.stock ? "text-green-600 mt-2" : "text-red-600"}
           >
             {formData.stock ? "In Stock" : "Out of Stock"}
           </Label>

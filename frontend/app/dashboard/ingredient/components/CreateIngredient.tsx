@@ -18,7 +18,7 @@ export default function CreateIngredient() {
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -34,13 +34,10 @@ export default function CreateIngredient() {
     try {
       await axios.post("http://localhost:5000/api/ingredient", {
         ...formData,
-        // price: Number(formData.price),
-        // discount: Number(formData.discount),
-        // rating: Number(formData.rating),
       });
-
+      
       alert("Ingredient created successfully");
-
+      
       setFormData({
         title: "",
         description: "",
@@ -56,10 +53,14 @@ export default function CreateIngredient() {
   return (
     <CardContent>
       <form onSubmit={handleSubmit} className="space-y-4">
-
         <div>
           <Label>Ingredient Title</Label>
-          <Input name="title" value={formData.title} onChange={handleChange} required />
+          <Input
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            required
+          />
         </div>
 
         <div>

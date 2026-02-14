@@ -1,5 +1,5 @@
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardAction,
@@ -7,51 +7,54 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 
-
-import { Hero } from "@/types/hero"
+import { Hero } from "@/types/hero";
 import DeleteButton from "./DeleteButton";
 import EditButton from "./EditButton";
-
 
 interface HeroTitleProps {
   hero: Hero;
   refetch?: () => void;
 }
 
-export default function HeroTitle({ hero, refetch }: HeroTitleProps) {
+export default function HeroCard({ hero, refetch }: HeroTitleProps) {
   return (
-    <Card className="relative mx-auto w-full max-w-sm flex border pt-0">
-      
-      <div className="absolute inset-0 z-30 aspect-video bg-black/35" />
-
+    <div className="flex items-center justify-between gap-4 border shadow-sm container mx-auto px-4 rounded-sm py-3 hover:bg-muted/50">
+      {/* Image */}
       <img
         src={hero.image}
         alt={hero.title}
-        className="relative z-20 aspect-video w-full object-cover brightness-60 grayscale"
+        className="h-12 w-12 rounded-md object-cover"
       />
 
-      <CardHeader>
-        <CardAction>
-          <Badge variant="secondary">{hero.title}</Badge>
-          <Badge variant="secondary">{hero.subtitle}</Badge>
-        </CardAction>
+      {/* Content: title, subtitle, description */}
+      <div className="flex flex flex-col justify-center gap-1">
+        <p className="font-medium">{hero.title}</p>
+        {hero.subtitle && (
+          <p className="text-sm text-muted-foreground line-clamp-1">
+            {hero.subtitle}
+          </p>
+        )}
+      </div>
 
-        <CardTitle>{hero.description}</CardTitle>
+      <div>
+        <p className="text-xs text-muted-foreground">{hero.description}</p>
+      </div>
 
-        <CardDescription>
-          Price: ৳{hero.price}
-          {hero.discount && (
-            <span className="text-red-500 ml-2">Discount: {hero.discount}%</span>
-          )}
-        </CardDescription>
-      </CardHeader>
+      {/* Price & discount */}
+      <div className="flex flex-col items-end">
+        <span className="font-semibold">৳{hero.price}</span>
+        {hero.discount && (
+          <span className="text-xs text-red-500">{hero.discount}% off</span>
+        )}
+      </div>
 
-      <CardFooter className="flex gap-2">
+      {/* Actions */}
+      <div className="flex gap-2">
         <EditButton id={hero.id} />
         <DeleteButton id={hero.id} onSuccess={refetch} />
-      </CardFooter>
-    </Card>
-  )
+      </div>
+    </div>
+  );
 }

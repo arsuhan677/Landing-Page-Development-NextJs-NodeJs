@@ -56,12 +56,12 @@ export default function CreateUsage() {
 
         <div>
           <Label>Usages Title</Label>
-          <Input name="title" value={formData.title} onChange={handleChange} required />
+          <Input className="mt-2" name="title" value={formData.title} onChange={handleChange} required />
         </div>
 
         <div>
           <Label>Description</Label>
-          <Textarea
+          <Textarea className="mt-2"
             name="description"
             value={formData.description}
             onChange={handleChange}

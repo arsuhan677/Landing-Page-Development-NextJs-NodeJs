@@ -23,7 +23,7 @@ export default function CreateHero() {
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -66,15 +66,23 @@ export default function CreateHero() {
   return (
     <CardContent>
       <form onSubmit={handleSubmit} className="space-y-4">
-
         <div>
           <Label>Hero Title</Label>
-          <Input name="title" value={formData.title} onChange={handleChange} required />
+          <Input
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            required
+          />
         </div>
 
         <div>
           <Label>Subtitle</Label>
-          <Input name="subtitle" value={formData.subtitle} onChange={handleChange} />
+          <Input
+            name="subtitle"
+            value={formData.subtitle}
+            onChange={handleChange}
+          />
         </div>
 
         <div>

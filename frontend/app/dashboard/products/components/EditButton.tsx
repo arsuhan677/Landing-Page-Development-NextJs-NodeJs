@@ -19,7 +19,6 @@ export default function EditButton({ id }: EditButtonProps) {
       className="flex items-center gap-2 cursor-pointer"
     >
       <Pencil size={16} />
-      Edit
     </Button>
   );
 }

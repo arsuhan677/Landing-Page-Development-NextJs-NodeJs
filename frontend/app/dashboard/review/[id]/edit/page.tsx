@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Review } from "@/types/review";
+import { CardContent } from "@/components/ui/card";
 
 export default function EditReviewPage() {
   const { id } = useParams<{ id: string }>();
@@ -56,8 +57,14 @@ export default function EditReviewPage() {
   if (!formData) return <p className="text-center">Loading...</p>;
 
   return (
-    <form onSubmit={handleSubmit} className="mx-auto space-y-4 max-w-lg">
-      <div>
+    <CardContent className="py-4">
+      <div className="py-6">
+        <h2 className="text-2xl font-bold">Update for review</h2>
+        <p>this is update the review</p>
+      </div>
+
+    <form onSubmit={handleSubmit} className="mx-auto space-y-4 w-full">
+      <div className="">
         <Label htmlFor="name">Name</Label>
         <Input
           id="name"
@@ -103,5 +110,6 @@ export default function EditReviewPage() {
         {loading ? "Updating..." : "Update review"}
       </Button>
     </form>
+    </CardContent>
   );
 }

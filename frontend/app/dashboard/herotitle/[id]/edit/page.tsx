@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Hero } from "@/types/hero";
+import { CardContent } from "@/components/ui/card";
 
 export default function EditHeroPage() {
   const { id } = useParams<{ id: string }>();
@@ -25,12 +26,10 @@ export default function EditHeroPage() {
   }, [id]);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) =>
-      prev ? { ...prev, [name]: value } : prev
-    );
+    setFormData((prev) => (prev ? { ...prev, [name]: value } : prev));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -56,69 +55,97 @@ export default function EditHeroPage() {
     }
   };
 
-  if (!formData) return <p className="text-center">Loading...</p>;
+  if (!formData) return <p className="text-center mt-10 text-lg">Loading...</p>;
 
   return (
-    <form onSubmit={handleSubmit} className="mx-auto space-y-4 max-w-xl">
+    <CardContent className="py-6">
+      <h2 className="text-2xl font-bold">Update for hero title</h2>
+      <p>this is update for the hero title</p>
+      <form onSubmit={handleSubmit} className="space-y-4 w-full py-6">
+        <div>
+          <Label className="font-semibold">Hero Title</Label>
+          <Input
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            placeholder="This is title"
+            className="mt-1"
+          />
+        </div>
 
-      <div>
-        <Label>Hero Title</Label>
-        <Input name="title" value={formData.title} onChange={handleChange} />
-      </div>
+        <div>
+          <Label className="font-semibold">Subtitle</Label>
+          <Input
+            name="subtitle"
+            value={formData.subtitle}
+            onChange={handleChange}
+            placeholder="This is subtitle"
+            className="mt-1"
+          />
+        </div>
 
-      <div>
-        <Label>Subtitle</Label>
-        <Input name="subtitle" value={formData.subtitle} onChange={handleChange} />
-      </div>
+        <div className="grid grid-cols-3 gap-4">
+          <div>
+            <Label className="font-semibold">Price</Label>
+            <Input
+              name="price"
+              type="number"
+              value={formData.price}
+              onChange={handleChange}
+              className="mt-1"
+            />
+          </div>
 
-      <div>
-        <Label>Price</Label>
-        <Input
-          name="price"
-          type="number"
-          value={formData.price}
-          onChange={handleChange}
-        />
-      </div>
+          <div>
+            <Label className="font-semibold">Discount %</Label>
+            <Input
+              name="discount"
+              type="number"
+              value={formData.discount}
+              onChange={handleChange}
+              className="mt-1"
+            />
+          </div>
 
-      <div>
-        <Label>Discount</Label>
-        <Input
-          name="discount"
-          type="number"
-          value={formData.discount}
-          onChange={handleChange}
-        />
-      </div>
+          <div>
+            <Label className="font-semibold">Rating</Label>
+            <Input
+              name="rating"
+              type="number"
+              step="0.1"
+              value={formData.rating}
+              onChange={handleChange}
+              className="mt-1"
+            />
+          </div>
+        </div>
 
-      <div>
-        <Label>Rating</Label>
-        <Input
-          name="rating"
-          type="number"
-          step="0.1"
-          value={formData.rating}
-          onChange={handleChange}
-        />
-      </div>
+        <div>
+          <Label className="font-semibold">Image URL</Label>
+          <Input
+            name="image"
+            value={formData.image}
+            onChange={handleChange}
+            placeholder="Paste image URL here"
+            className="mt-1"
+          />
+        </div>
 
-      <div>
-        <Label>Image URL</Label>
-        <Input name="image" value={formData.image} onChange={handleChange} />
-      </div>
+        <div>
+          <Label className="font-semibold">Description</Label>
+          <Textarea
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            placeholder="This is description"
+            className="mt-1 h-32 resize-none"
+          />
+        </div>
 
-      <div>
-        <Label>Description</Label>
-        <Textarea
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-        />
-      </div>
-
-      <Button disabled={loading} className="w-full">
-        {loading ? "Updating..." : "Update Hero"}
-      </Button>
-    </form>
+        <Button disabled={loading} className="w-full">
+          {loading ? "Updating..." : "Update HeroTitle"}
+        </Button>
+      </form>
+    </CardContent>
   );
 }

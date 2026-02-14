@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { CardContent } from "@/components/ui/card";
+import { api } from "@/utils/api";
 
 export default function CreateGallery() {
   const [loading, setLoading] = useState(false);
@@ -31,9 +32,7 @@ export default function CreateGallery() {
     setLoading(true);
 
     try {
-      await axios.post("http://localhost:5000/api/productgallry", {
-        ...formData,
-      });
+      await api.post("/productgallry", formData);
 
       alert("Gallery created successfully");
 
@@ -62,7 +61,7 @@ export default function CreateGallery() {
         </div>
 
         <Button type="submit" disabled={loading} className="w-full">
-          {loading ? "Saving..." : "Add Hero"}
+          {loading ? "Saving..." : "Add productgallery"}
         </Button>
       </form>
     </CardContent>

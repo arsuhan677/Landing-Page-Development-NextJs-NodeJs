@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Ingredient } from "@/types/ingredient";
+import { CardContent } from "@/components/ui/card";
 
 export default function EditIngredientPage() {
   const { id } = useParams<{ id: string }>();
@@ -41,9 +42,6 @@ export default function EditIngredientPage() {
     try {
       await axios.put(`http://localhost:5000/api/ingredient/${id}`, {
         ...formData,
-        // price: Number(formData.price),
-        // discount: Number(formData.discount),
-        // rating: Number(formData.rating),
       });
 
       alert("Ingredient updated successfully");
@@ -59,25 +57,34 @@ export default function EditIngredientPage() {
   if (!formData) return <p className="text-center">Loading...</p>;
 
   return (
-    <form onSubmit={handleSubmit} className="mx-auto space-y-4 max-w-xl">
 
-      <div>
-        <Label>Ingredient Title</Label>
-        <Input name="title" value={formData.title} onChange={handleChange} />
-      </div>
+    <CardContent>
+      <div className="py-6"><h1 className="text-2xl font-bold">Update For Ingredient</h1></div>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <Label>Ingredient Title</Label>
+          <Input className="mt-2"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-      <div>
-        <Label>Description</Label>
-        <Textarea
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-        />
-      </div>
+        <div>
+          <Label>Description</Label>
+          <Textarea className="mt-2"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+          />
+        </div>
 
-      <Button disabled={loading} className="w-full">
+        <Button disabled={loading} className="w-full">
         {loading ? "Updating..." : "Update Ingredient"}
       </Button>
-    </form>
+      </form>
+    </CardContent>
+  
   );
 }

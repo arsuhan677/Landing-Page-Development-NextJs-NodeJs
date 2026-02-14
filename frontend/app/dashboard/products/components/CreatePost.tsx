@@ -79,52 +79,49 @@ export default function CreateProduct() {
   return (
     <CardContent>
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Product Name */}
-        <div>
-          <Label>Product Name</Label>
-          <Input
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <Label>Product Name</Label>
+            <Input
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <Label>Price</Label>
+            <Input
+              name="price"
+              type="number"
+              value={formData.price}
+              onChange={handleChange}
+              required
+            />
+          </div>
         </div>
 
-        {/* Price */}
-        <div>
-          <Label>Price</Label>
-          <Input
-            name="price"
-            type="number"
-            value={formData.price}
-            onChange={handleChange}
-            required
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <Label>Discount</Label>
+            <Input
+              name="discount"
+              type="number"
+              value={formData.discount ?? ""}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <Label>Image URL</Label>
+            <Input
+              name="image"
+              value={formData.image}
+              onChange={handleChange}
+              required
+            />
+          </div>
         </div>
 
-        {/* Discount */}
-        <div>
-          <Label>Discount</Label>
-          <Input
-            name="discount"
-            type="number"
-            value={formData.discount || ""}
-            onChange={handleChange}
-          />
-        </div>
-
-        {/* Image */}
-        <div>
-          <Label>Image URL</Label>
-          <Input
-            name="image"
-            value={formData.image}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        {/* Description */}
         <div>
           <Label>Description</Label>
           <Textarea
@@ -151,11 +148,92 @@ export default function CreateProduct() {
           </Label>
         </div>
 
-        {/* btn*/}
+        {/* BTNN */}
         <Button type="submit" disabled={loading} className="w-full">
-          {loading ? "Saving..." : "Add Product"}
+          {loading ? "Creating..." : "Create Product"}
         </Button>
       </form>
     </CardContent>
+
+    // <CardContent>
+    //   <form onSubmit={handleSubmit} className="space-y-4">
+    //     {/* Product Name */}
+    //     <div>
+    //       <Label>Product Name</Label>
+    //       <Input
+    //         name="name"
+    //         value={formData.name}
+    //         onChange={handleChange}
+    //         required
+    //       />
+    //     </div>
+
+    //     {/* Price */}
+    //     <div>
+    //       <Label>Price</Label>
+    //       <Input
+    //         name="price"
+    //         type="number"
+    //         value={formData.price}
+    //         onChange={handleChange}
+    //         required
+    //       />
+    //     </div>
+
+    //     {/* Discount */}
+    //     <div>
+    //       <Label>Discount</Label>
+    //       <Input
+    //         name="discount"
+    //         type="number"
+    //         value={formData.discount || ""}
+    //         onChange={handleChange}
+    //       />
+    //     </div>
+
+    //     {/* Image */}
+    //     <div>
+    //       <Label>Image URL</Label>
+    //       <Input
+    //         name="image"
+    //         value={formData.image}
+    //         onChange={handleChange}
+    //         required
+    //       />
+    //     </div>
+
+    //     {/* Description */}
+    //     <div>
+    //       <Label>Description</Label>
+    //       <Textarea
+    //         name="description"
+    //         value={formData.description}
+    //         onChange={handleChange}
+    //       />
+    //     </div>
+
+    //     {/* Stock */}
+    //     <div className="flex items-center gap-3">
+    //       <Checkbox
+    //         id="stock"
+    //         checked={formData.stock}
+    //         onCheckedChange={(checked) =>
+    //           handleCheckboxChange("stock", Boolean(checked))
+    //         }
+    //       />
+    //       <Label
+    //         htmlFor="stock"
+    //         className={formData.stock ? "text-green-600" : "text-red-600"}
+    //       >
+    //         {formData.stock ? "In Stock" : "Out of Stock"}
+    //       </Label>
+    //     </div>
+
+    //     {/* btn*/}
+    //     <Button type="submit" disabled={loading} className="w-full">
+    //       {loading ? "Saving..." : "Add Product"}
+    //     </Button>
+    //   </form>
+    // </CardContent>
   );
 }

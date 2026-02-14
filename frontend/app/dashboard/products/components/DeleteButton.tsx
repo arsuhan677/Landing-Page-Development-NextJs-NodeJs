@@ -36,7 +36,6 @@ export default function DeleteButton({ id, onSuccess }: DeleteButtonProps) {
       className="flex items-center gap-2 cursor-pointer"
     >
       <Trash2 size={16} />
-      Delete
     </Button>
   );
 }
