@@ -3,6 +3,7 @@
 import { Check, Star, MessageCircle, Truck } from "lucide-react";
 import { useEffect, useState } from "react";
 import OrderButton from "./OrderButton";
+import { api } from "@/utils/api";
 
 type Hero = {
   id: string;
@@ -22,9 +23,8 @@ const ProductHero = () => {
   useEffect(() => {
     const fetchHero = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/hero");
-        const data: Hero[] = await res.json();
-        setHero(data[0] || null);
+        const res = await api.get("/hero");
+        setHero(res.data[0] || null);
       } catch (error) {
         console.error("Hero fetch error:", error);
       } finally {
@@ -61,17 +61,15 @@ const ProductHero = () => {
 
           {/* Benefits */}
           <ul className="space-y-3">
-            {hero.description
-              .split(",")
-              .map((benefit, index) => (
-                <li
-                  key={index}
-                  className="flex items-center gap-2 text-gray-700 font-medium"
-                >
-                  <Check className="text-[#F37021] w-4 h-4" strokeWidth={3} />
-                  {benefit}
-                </li>
-              ))}
+            {hero.description.split(",").map((benefit, index) => (
+              <li
+                key={index}
+                className="flex items-center gap-2 text-gray-700 font-medium"
+              >
+                <Check className="text-[#F37021] w-4 h-4" strokeWidth={3} />
+                {benefit}
+              </li>
+            ))}
           </ul>
 
           {/* Rating */}
@@ -81,9 +79,7 @@ const ProductHero = () => {
                 <Star key={i} size={18} fill="currentColor" />
               ))}
             </div>
-            <span className="font-bold text-gray-800">
-              {hero.rating}/5
-            </span>
+            <span className="font-bold text-gray-800">{hero.rating}/5</span>
           </div>
 
           {/* Pricing */}
@@ -135,7 +131,8 @@ const ProductHero = () => {
 
       <style jsx>{`
         @keyframes float {
-          0%, 100% {
+          0%,
+          100% {
             transform: translateY(0);
           }
           50% {
@@ -151,4 +148,3 @@ const ProductHero = () => {
 };
 
 export default ProductHero;
-

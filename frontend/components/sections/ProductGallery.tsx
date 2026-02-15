@@ -1,12 +1,13 @@
 "use client";
-import React, { useEffect, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import OrderButton from './OrderButton';
+import React, { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import OrderButton from "./OrderButton";
+import { api } from "@/utils/api";
 
 type Productimg = {
   id: string;
@@ -19,9 +20,8 @@ const ProductGallery = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/productgallry");
-        const data = await res.json();
-        setProducts(data);
+        const res = await api.get("/productgallry");
+        setProducts(res.data);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -35,8 +35,12 @@ const ProductGallery = () => {
       <div className="container mx-auto px-6 text-center relative">
         {/* Header */}
         <div className="mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold text-[#333] mb-2">প্রোডাক্ট গ্যালারি</h2>
-          <p className="text-gray-500">আমাদের প্রিমিয়াম স্কিনকেয়ার প্রোডাকশন কালেকশন দেখুন</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#333] mb-2">
+            প্রোডাক্ট গ্যালারি
+          </h2>
+          <p className="text-gray-500">
+            আমাদের প্রিমিয়াম স্কিনকেয়ার প্রোডাকশন কালেকশন দেখুন
+          </p>
         </div>
 
         {/* Slider Container */}
@@ -47,8 +51,8 @@ const ProductGallery = () => {
             slidesPerView={1}
             loop={true}
             autoplay={{ delay: 3000 }}
-            pagination={{ clickable: true, el: '.custom-pagination' }}
-            navigation={{ nextEl: '.prev-btn', prevEl: '.next-btn' }}
+            pagination={{ clickable: true, el: ".custom-pagination" }}
+            navigation={{ nextEl: ".prev-btn", prevEl: ".next-btn" }}
             breakpoints={{
               640: { slidesPerView: 2 },
               1024: { slidesPerView: 3 },
@@ -59,8 +63,8 @@ const ProductGallery = () => {
               products.map((product, index) => (
                 <SwiperSlide key={index}>
                   <div className="bg-white p-4 rounded-3xl shadow-sm border border-orange-50 aspect-square flex items-center justify-center overflow-hidden">
-                    <img 
-                      src={product.image} 
+                    <img
+                      src={product.image}
                       alt="Product Image"
                       className="hover:scale-105 transition-transform duration-300 rounded-xl w-full h-full object-cover"
                     />
@@ -85,7 +89,7 @@ const ProductGallery = () => {
         </div>
 
         {/* CTA Button */}
-        <OrderButton className='mt-8' />
+        <OrderButton className="mt-8" />
       </div>
 
       {/* Custom Styles for Pagination Dots */}
@@ -98,7 +102,7 @@ const ProductGallery = () => {
           transition: all 0.3s;
         }
         .custom-pagination .swiper-pagination-bullet-active {
-          background: #F37021;
+          background: #f37021;
           width: 30px;
           border-radius: 5px;
         }

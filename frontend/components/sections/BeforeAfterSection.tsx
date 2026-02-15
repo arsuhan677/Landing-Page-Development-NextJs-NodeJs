@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import OrderButton from "./OrderButton";
+import { api } from "@/utils/api";
 
 type Item = {
   id: string;
@@ -16,8 +16,8 @@ const BeforeAfterSection = () => {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/afterbefor");
-        setImages(res.data); // <-- এখানেই fix
+        const res = await api.get("/afterbefor");
+        setImages(res.data);
         setLoading(false);
       } catch (err) {
         console.error("Error fetching images:", err);

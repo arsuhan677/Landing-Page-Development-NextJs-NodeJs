@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { Sun, Droplets, Leaf, FlaskConical, Sparkles, ShieldCheck, Beaker } from 'lucide-react';
 import OrderButton from './OrderButton';
+import { api } from '@/utils/api';
 
 type Ingredient = {
   id: string;
@@ -17,9 +18,9 @@ const IngredientsSection = () => {
   useEffect(() => {
     const fetchIngredient = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/ingredient");
-        const data: Ingredient[] = await res.json();
-        setIngredients(data);
+        const res = await api.get("/ingredient");
+        // const data: Ingredient[] = await res.json();
+        setIngredients(res.data);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching ingredients:", error);

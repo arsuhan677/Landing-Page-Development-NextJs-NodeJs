@@ -1,6 +1,6 @@
-import React from 'react';
-import { ShoppingCart, CheckCircle2 } from 'lucide-react';
-import OrderButton from './OrderButton';
+import React from "react";
+import { ShoppingCart, CheckCircle2 } from "lucide-react";
+import OrderButton from "./OrderButton";
 
 const TrustIndicators = () => {
   const points = [
@@ -9,7 +9,7 @@ const TrustIndicators = () => {
     { text: "ফ্রি কুরিয়ার (৩-৫ দিন)" },
     { text: "২৪/৭ কাস্টমার সাপোর্ট" },
     { text: "ফেরত নীতি (৩ দিন)" },
-    { text: "প্রিমিয়াম প্যাকেজিং" }
+    { text: "প্রিমিয়াম প্যাকেজিং" },
   ];
 
   return (
@@ -36,7 +36,7 @@ const TrustIndicators = () => {
         </div>
 
         {/* Bottom CTA Button */}
-        <OrderButton className='mt-8' />
+        <OrderButton className="mt-8" />
       </div>
     </section>
   );

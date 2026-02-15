@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Droplets, Clock, Sparkles, Moon } from "lucide-react";
 import OrderButton from "./OrderButton";
+import { api } from "@/utils/api";
 
 const icons = [
   <Droplets className="text-[#F37021] w-8 h-8" />,
@@ -18,13 +19,24 @@ type Steps = {
 
 const UsageSteps = () => {
   const [steps, setSteps] = useState<Steps[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/usageguideline")
-      .then((res) => res.json())
-      .then((data) => setSteps(data))
-      .catch((err) => console.error(err));
-  }, []);
+      const fetchSteps = async () => {
+        try {
+          const res = await api.get("/usageguideline");
+          // const data: Ingredient[] = await res.json();
+          setSteps(res.data);
+          setLoading(false);
+        } catch (error) {
+          console.error("Error fetching fetchSteps:", error);
+          setLoading(false);
+        }
+      };
+  
+      fetchSteps();
+    }, []);
+
 
   return (
     <section className="bg-[#FFF5ED] py-16">
@@ -74,4 +86,3 @@ const UsageSteps = () => {
 };
 
 export default UsageSteps;
-

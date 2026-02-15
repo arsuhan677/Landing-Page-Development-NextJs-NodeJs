@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Minus, Plus, ShieldCheck } from "lucide-react";
-import axios from "axios";
+import { api } from "@/utils/api";
 
 const CheckoutSection = () => {
   const [quantity, setQuantity] = useState(1);
@@ -14,16 +14,16 @@ const CheckoutSection = () => {
   const [district, setDistrict] = useState("");
   const [note, setNote] = useState("");
 
-  const [orderId, setOrderId] = useState<string | null>(null); // pending order id
+  const [orderId, setOrderId] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
 
   // Auto save order as pending
   useEffect(() => {
     const savePendingOrder = async () => {
-      if (!name || !mobile || !address || !district) return; // required fields check
+      if (!name || !mobile || !address || !district) return;
       setSaving(true);
       try {
-        const res = await axios.post("http://localhost:5000/api/orders", {
+        const res = await api.post("/orders", {
           name,
           mobile,
           address,
@@ -48,7 +48,7 @@ const CheckoutSection = () => {
     e.preventDefault();
     if (!orderId) return alert("প্রথমে ফর্ম পূরণ করুন।");
     try {
-      await axios.put(`http://localhost:5000/api/orders/${orderId}/confirm`);
+      await api.put(`/orders/${orderId}/confirm`);
       alert("অর্ডার কনফার্ম হয়েছে!");
       setName("");
     setMobile("");

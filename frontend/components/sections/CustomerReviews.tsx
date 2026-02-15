@@ -21,7 +21,6 @@ const CustomerReviews = () => {
     const fetchReview = async () => {
       try {
         const res = await api.get("/review");
-        // const data: Review[] = await res.json();
 
         setReviews(res.data);
 

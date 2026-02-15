@@ -14,7 +14,9 @@ const FeaturesSection = () => {
     {
       title: "নিরাপদ ডেলিভারি",
       description: "সারাদেশে নিরাপদ পৌঁছায়",
-      icon: <ShieldCheck className="text-[#F37021] w-8 h-8 hover:bg-blue-400" />,
+      icon: (
+        <ShieldCheck className="text-[#F37021] w-8 h-8 hover:bg-blue-400" />
+      ),
     },
     {
       title: "অরিজিনাল প্রোডাক্ট",
