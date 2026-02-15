@@ -48,11 +48,11 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-center gap-3 text-white">
                 <Phone size={18} className="text-[#F37021]" />
-                <span>+880 1XXXXXXXXX</span>
+                <span>+880 1701635619</span>
               </li>
               <li className="flex items-center gap-3 text-white">
                 <Mail size={18} className="text-[#F37021]" />
-                <span>support@revo.com</span>
+                <span>aminurrahmansuhan@gmail.com</span>
               </li>
               <li className="flex items-center gap-3 text-white">
                 <MapPin size={18} className="text-[#F37021]" />
@@ -79,7 +79,7 @@ const Footer = () => {
           </p>
           <div className="flex items-center gap-2">
             <span className="text-gray-400 text-xs italic">Developed by</span>
-            <span className="text-gray-600 font-semibold text-sm">Your Agency</span>
+            <span className="text-gray-600 font-semibold text-sm">A R Suhan</span>
           </div>
         </div>
       </div>

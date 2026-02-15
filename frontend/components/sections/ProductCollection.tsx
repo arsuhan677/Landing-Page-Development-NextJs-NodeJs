@@ -63,7 +63,7 @@ const ProductCollection = () => {
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="max-h-full object-contain rounded-lg"
+                  className="w-full h-50 object-cover object-contain rounded-lg"
                 />
               </div>
 

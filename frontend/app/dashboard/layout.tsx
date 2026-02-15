@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/sidebar"
 
 
-export default function Layout({children}: any) {
+export default function DashboardLayout({children}: any) {
   return (
     <SidebarProvider
       style={

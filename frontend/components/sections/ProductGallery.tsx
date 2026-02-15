@@ -62,7 +62,7 @@ const ProductGallery = () => {
                     <img 
                       src={product.image} 
                       alt="Product Image"
-                      className="max-h-full object-contain hover:scale-105 transition-transform duration-300 rounded-xl"
+                      className="hover:scale-105 transition-transform duration-300 rounded-xl w-full h-full object-cover"
                     />
                   </div>
                 </SwiperSlide>

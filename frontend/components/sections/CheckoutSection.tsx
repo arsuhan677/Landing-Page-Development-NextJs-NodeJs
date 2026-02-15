@@ -5,7 +5,7 @@ import axios from "axios";
 
 const CheckoutSection = () => {
   const [quantity, setQuantity] = useState(1);
-  const price = 100;
+  const price = 840;
 
   // Form fields
   const [name, setName] = useState("");
@@ -39,7 +39,7 @@ const CheckoutSection = () => {
       setSaving(false);
     };
 
-    const timeout = setTimeout(savePendingOrder, 1000); // debounce 1 sec
+    const timeout = setTimeout(savePendingOrder, 1000);
     return () => clearTimeout(timeout);
   }, [name, mobile, address, district, note, quantity]);
 
@@ -82,7 +82,7 @@ const CheckoutSection = () => {
                   <h3 className="font-bold text-[#333]">ভিটামিন সি সিরাম</h3>
                   <div className="flex gap-2 text-sm">
                     <span className="font-bold text-[#F37021]">৳ {price}</span>
-                    <span className="text-gray-400 line-through">৳ ১০০০</span>
+                    <span className="text-gray-400 line-through">৳ 1400</span>
                   </div>
                 </div>
               </div>
@@ -97,7 +97,7 @@ const CheckoutSection = () => {
               <h3 className="text-xl font-bold text-[#333] mb-1">ভিটামিন সি সিরাম</h3>
               <p className="text-2xl font-bold text-[#F37021]">
                 ৳ {price * quantity}{" "}
-                <span className="text-sm text-gray-400 line-through">৳ ১০০০</span>
+                <span className="text-sm text-gray-400 line-through">৳ 1400</span>
               </p>
             </div>
           </div>
