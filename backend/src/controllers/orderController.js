@@ -56,8 +56,31 @@ const getAllOrders = async (req, res) => {
   }
 };
 
+const getOrder = async (req, res) => {
+  try {
+    const { id } = req.params; // route: /order/:id
+
+    if (!id) {
+      return res.status(400).json({ message: "Order ID is required" });
+    }
+
+    const docRef = db.collection(collectionName).doc(id);
+    const doc = await docRef.get();
+
+    if (!doc.exists) {
+      return res.status(404).json({ message: "Order not found" });
+    }
+
+    res.status(200).json({ id: doc.id, ...doc.data() });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+
 module.exports = {
   createPendingOrder,
   confirmOrder,
   getAllOrders,
+  getOrder
 };

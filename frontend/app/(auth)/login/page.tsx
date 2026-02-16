@@ -12,25 +12,22 @@ export default function LoginPage() {
     e.preventDefault();
 
     try {
-      // Axios ব্যবহার করে POST request
       const res = await api.post("/auth/login", { email, password });
 
       setMessage(res.data.message);
 
       if (res.status === 200) {
-        // Successful login -> redirect to dashboard
         window.location.href = "/dashboard";
       }
     } catch (err: any) {
       console.error(err);
 
-      // Backend থেকে message থাকলে দেখাবে, না হলে default "Server error"
       setMessage(err.response?.data?.message || "Server error");
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500">
+    <div className="flex items-center justify-center min-h-screen ">
       <form
         onSubmit={handleLogin}
         className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md"
